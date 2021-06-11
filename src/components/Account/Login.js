@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import '../../App.css'
 import { UserContext } from '../../contexts/User';
 import '../../Styles/Login.css'
+import { EyeOff, Eye} from 'react-feather'
 
 function Login(props) {
 
@@ -18,18 +19,18 @@ function Login(props) {
     const [arrSuccess, setArrSuccess] = useState()
     const [arrErr, setArrErr] = useState() 
 
-    useEffect(()=> {
-        Axios.get(`http://pe.heromc.net:4000/users/${localStorage.getItem('user-id')}`, { 
-            headers: {"authorization" : `Bearer ${localStorage.getItem('token')}`}
-        })
-        .then(res => { 
-            setUserInfoFunc(res.data.user);
-            props.history.push("/account")
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    },[]) 
+    // useEffect(()=> {
+    //     Axios.get(`http://pe.heromc.net:4000/users/${localStorage.getItem('user-id')}`, { 
+    //         headers: {"authorization" : `Bearer ${localStorage.getItem('token')}`}
+    //     })
+    //     .then(res => { 
+    //         setUserInfoFunc(res.data.user);
+    //         props.history.push("/account")
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+    // },[a]) 
 
     const sendAccount = (event) => {
         event.preventDefault()
@@ -73,7 +74,14 @@ function Login(props) {
             })
         }
     }
-
+    const [values, setValues] = React.useState({
+        password: "",
+        showPassword: false,
+      });
+      const handlePasswordChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+    const [isRevealPwd, setIsRevealPwd] = useState(false);
     return (
         <div className="login flex-col">
             <div className="login-title">
@@ -97,12 +105,15 @@ function Login(props) {
                             }}
                         ></input>
                         <label>Mật khẩu</label>
-                        <input
-                            value={password}
-                            onChange={(event)=>{
-                                setPassword(event.target.value)
-                            }}
-                        ></input>
+                        <div className="input-password">
+                            <input
+                                type={isRevealPwd ? "text" : "password"}                      
+                                value={values.password}
+                                onChange={handlePasswordChange("password")}
+                            />
+                            <span  onClick={() => setIsRevealPwd(!isRevealPwd)}>{isRevealPwd ?<Eye size={15}/> :<EyeOff size={15}/> }</span>
+                        </div>
+
                         <button>Đăng nhập</button>
                     </form>
                     <div className="login-forgot">Quên mật khẩu?</div>
@@ -132,12 +143,14 @@ function Login(props) {
                             }}
                         ></input>
                         <label>Mật khẩu *</label>
-                        <input
-                            value={password}
-                            onChange={(event)=>{
-                                setPassword(event.target.value)
-                            }}
-                        ></input>
+                        <div className="input-password">
+                            <input
+                                type={isRevealPwd ? "text" : "password"}                      
+                                value={values.password}
+                                onChange={handlePasswordChange("password")}
+                            />
+                            <span  onClick={() => setIsRevealPwd(!isRevealPwd)}>{isRevealPwd ?<Eye size={15}/> :<EyeOff size={15}/> }</span>
+                        </div>
                         <button>Tạo tài khoản</button>
                     </form> 
                     <div className="login-register" onClick={()=>{setTab(0)}}>Đã có tài khoản?</div>
