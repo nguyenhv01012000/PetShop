@@ -9,8 +9,8 @@ export default function NewsBanner(props) {
     const [date, setDate] = useState("")
     
     useEffect(()=>{
-        Axios.post(`http://localhost:4000/news/update/${news._id}`, {
-            countId: news._id
+        Axios.post(`http://localhost:8000/api/news/${news.id}`, {
+            countId: news.id
         }) 
         const monthNames = [
             "January", "February", "March", "April", "May", "June",

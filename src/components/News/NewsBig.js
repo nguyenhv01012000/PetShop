@@ -11,7 +11,7 @@ function NewsBig(props) {
         <div 
             className="newsbig"
             onClick={()=>{ 
-                props.history.push(`/news/${bigNews._id}`)
+                props.history.push(`/news/${bigNews.id}`)
             }}>  
             <img src={bigNews.newImg} alt=""></img>
             <div className="newslastest-tag">{bigNews.newCate}</div>

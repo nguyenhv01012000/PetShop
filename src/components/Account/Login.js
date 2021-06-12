@@ -34,33 +34,34 @@ function Login(props) {
     const sendAccount = (event) => {
         event.preventDefault()
         if (tab === 0) {
-            Axios.post('http://localhost:4000/users/login', {
-                loginEmail: email,
-                loginPassword: password
+            Axios.post('http://localhost:8000/api/login/', {
+                username: email,
+                password: password
             }) 
             .then(res => {
                 setArrSuccess("Đăng nhập thành công!") 
                 setArrErr("");
-                setTimeout(()=> {
-                    window.location.reload(false);
-                    document.body.style.overflow = 'unset';
-                }, 1000)
+                // setTimeout(()=> {
+                //     window.location.reload(false);
+                //     document.body.style.overflow = 'unset';
+                // }, 1000)
+                props.history.push('')
                 localStorage.setItem('token', res.data.token);
-                localStorage.setItem('user-id', res.data.user._id);
+                localStorage.setItem('user-id', res.data.user.id);
             })
             .catch(err => {
                 setArrSuccess("");
-                setArrErr(err.response.data);
+                setArrErr("Tên đăng nhập hoặc mật khẩu không chính xác");
             })
         } else {
-            Axios.post('http://localhost:4000/users/register', {
-                userName: name,
-                userEmail: email,
-                userPassword: password,
-                userRole: "user"
+            Axios.post('http://localhost:8000/api/register/', {
+                username: name,
+                email: email,
+                password: password,
+                //userRole: "user"
             })
             .then(res => { 
-                setArrSuccess(res.data)
+                setArrSuccess("Đăng ký thành công!")
                 setArrErr("");
                 setTimeout(()=> {
                     window.location.reload(false);
@@ -69,7 +70,7 @@ function Login(props) {
             })
             .catch(err => { 
                 setArrSuccess("");
-                setArrErr(err.response.data);
+                setArrErr(err.response.data.username);
             })
         }
     }
@@ -89,7 +90,7 @@ function Login(props) {
                         { arrSuccess && <div className="login-success">{arrSuccess}</div>}
                     </div>
                     <form className="flex-col" onSubmit={sendAccount}>
-                        <label>Email</label>
+                        <label>Tên Đăng Nhập</label>
                         <input
                             value={email}
                             onChange={(event)=>{

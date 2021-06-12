@@ -17,7 +17,7 @@ export default function DashboardProductTable(props) {
     const [isSortBySold, setIsSortBySold] = useState(false)
     
     useEffect(()=>{
-        axios.get(`http://localhost:4000/products`)
+        axios.get(`http://localhost:4000/product`)
             .then(res => {
                 setProducts(res.data)
                 setConstProducts(res.data)
@@ -268,8 +268,10 @@ export default function DashboardProductTable(props) {
                                     const year = date.getFullYear();
                                     const shortedDate = day + '/' + month + '/' + year;
                                     //Counting star vote
-                                    const ratingList = item.productVote.map(a => a.ratingStart); // get all rating
-                                    
+                                    //const ratingList = item.productVote.map(a => a.ratingStart); // get all rating
+
+                                    const ratingList = [1,2,3]
+
                                     const totalRating = ratingList.reduce((a, b) => a + b, 0);
 
                                     var averageRating = 0;
@@ -286,7 +288,7 @@ export default function DashboardProductTable(props) {
                                             </td>
                                             <td className="table-mobile-productimages" style={{display: 'flex'}}>
                                                 <img 
-                                                    src={item.productColor[0].productImg[0]} 
+                                                    src={item.productImg} 
                                                     width="70px" height="80px"
                                                     style={{padding: '5px 0'}}
                                                     alt=""

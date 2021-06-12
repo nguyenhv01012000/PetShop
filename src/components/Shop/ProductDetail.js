@@ -27,14 +27,14 @@ export default function ProductDetail(props) {
     const product = props.product
     let totalRating = 0
     if (product) { 
-        if (imgIndex === product.productColor[colorTab].productImg.length) {
-            setImgIndex(0);
-        }   
-        let total = 0
-        for (let i in product.productVote) { 
-            total += product.productVote[i].ratingStart
-        }
-        totalRating = total / product.productVote.length
+        // if (imgIndex === product.productColor[colorTab].productImg.length) {
+        //     setImgIndex(0);
+        // }   
+        // let total = 0
+        // for (let i in product.productVote) { 
+        //     total += product.productVote[i].ratingStart
+        // }
+        // totalRating = total / product.productVote.length
     }
     
     let width = 0;
@@ -48,12 +48,12 @@ export default function ProductDetail(props) {
     if (imgIndex >= 4 && imgIndex) {
         width = (imgIndex - 2) * 54
     } 
-    if (imgIndex === product.productColor[0].productImg.length - 2) {
-        width = (imgIndex - 3) * 54 
-    }
-    if (imgIndex === product.productColor[0].productImg.length - 1) {
-        width = (imgIndex - 4) * 54 
-    } 
+    // if (imgIndex === product.productColor[0].productImg.length - 2) {
+    //     width = (imgIndex - 3) * 54 
+    // }
+    // if (imgIndex === product.productColor[0].productImg.length - 1) {
+    //     width = (imgIndex - 4) * 54 
+    // } 
     
     const ratingStar = {
         size: 14,
@@ -89,19 +89,19 @@ export default function ProductDetail(props) {
                     }} 
                 >
                     {
-                        product.productColor[colorTab].productImg.map((item, index) => {
-                            return (
+                        // product.productColor[colorTab].productImg.map((item, index) => {
+                        //     return (
                                 <div  
-                                    key={index}
+                                    // key={index}
                                     className="productdetail-image-item"
                                     style={{
                                         transform: `translateX(-${320 * imgIndex}px)`
                                     }}
                                 >
-                                    <img src={item} alt=""/>
+                                    <img src={product.productImg} alt=""/>
                                 </div>
-                            )
-                        })
+                        //     )
+                        // })
                     } 
                 </div>
                 <div className="productdetail-image-small flex">
@@ -121,11 +121,11 @@ export default function ProductDetail(props) {
                         <img src="https://tractive.com/static/images/arrow-slide-left.svg" alt=""></img>
                     </div>
                     <div className="productdetail-image-small-list flex">
-                        {
+                        {/* {
                             product.productColor[colorTab].productImg.map((item, index) => {
                                 return (
                                     <img 
-                                        src={item} 
+                                        src={product.productImg} 
                                         alt=""
                                         key={index}
                                         onClick={()=>{
@@ -136,8 +136,18 @@ export default function ProductDetail(props) {
                                         }}
                                         className={imgIndex === index ? 'outline' : ''}
                                     />
-                                )
-                            })
+                                 )
+                            )
+                        } */
+                        <img 
+                                        src={product.productImg} 
+                                        alt=""
+                                    
+                                        style={{
+                                            transform: `translateX(-${width}px)`
+                                        }}
+                                        
+                                    />
                         }
                     </div>
                     <div 
@@ -162,12 +172,12 @@ export default function ProductDetail(props) {
                     </div>
                     <div className="flex" style={{alignItems: "center"}}>
                         <ReactStars {...ratingStar} />
-                        <p>{product.productVote.length} đánh giá</p>
+                        {/* <p>{product.productVote.length} đánh giá</p> */}
                     </div>
                 </div> 
                 <div className="productdetail-color">
                     <div className="productdetail-color-color flex">
-                        {
+                        {/* {
                             product.productColor.map((item, index) => {
                                 return (
                                     <div 
@@ -184,22 +194,27 @@ export default function ProductDetail(props) {
                                     </div>
                                 )
                             })
+                        } */
+                        <img 
+                        src={product.productImg} 
+                        alt=""
+                    ></img>
                         }
                     </div>
                     <span>
                         {/* <strong style={{color: '#007FC8'}}>Color: </strong> */}
                         <strong>Color: </strong>
-                        {product.productColor[colorTab].name}
+                        {/* {product.productColor[colorTab].name} */}
                     </span>
                 </div> 
                 <ul>
-                    {
+                    {/* {
                         product.productFeature.map((item, index) => {
                             return (
                                 <li key={index}>{item}</li>
                             )
                         })
-                    }
+                    } */}
                 </ul>
                 <p>{product.productDes}</p>
                 <div 

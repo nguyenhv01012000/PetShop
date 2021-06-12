@@ -14,7 +14,7 @@ export default function DashboardNewsTable(props) {
     const [constNews, setConstNews] = useState([])
     
     useEffect(()=>{
-        axios.get(`http://localhost:4000/news`)
+        axios.get(`http://localhost:8000/api/news`)
             .then(res => {
                 setNews(res.data)
                 setConstNews(res.data)
@@ -100,11 +100,11 @@ export default function DashboardNewsTable(props) {
     }
 
     const deleteOnClick = (event) => {
-        axios.post(`http://localhost:4000/news/delete/:${event.target.id}`, {
+        axios.delete(`http://localhost:8000/api/news/${event.target.id}`, {
             productId: event.target.id
         })
         setNews(news.filter((item)=>{
-            return item._id !== event.target.id
+            return item.id != event.target.id
         }))
     }
 
@@ -253,14 +253,14 @@ export default function DashboardNewsTable(props) {
                                                     <div 
                                                         className="action-item flex-center action-green"
                                                         onClick={props.setOpenEditFunc}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faPencilAlt}/>
                                                     </div>
                                                     <div 
                                                         className="action-item flex-center action-red"
                                                         onClick={deleteOnClick}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faTimes}/>
                                                     </div>

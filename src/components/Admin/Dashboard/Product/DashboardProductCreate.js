@@ -23,7 +23,7 @@ export default function DashboardProductCreate(props) {
     }
     
     useEffect(()=> {
-        axios.get(`http://localhost:4000/products`)
+        axios.get(`http://localhost:4000/product`)
             .then(res => {
                 const test = Object.values(res.data.reduce((a, {productCate}) => {
                     a[productCate] = a[productCate] || {productCate};
@@ -55,7 +55,7 @@ export default function DashboardProductCreate(props) {
         formData.append("productCate", cateValue);  
         formData.append("productDes", inputValue.des); 
         formData.append("productDate", new Date());
-        axios.post('http://localhost:4000/products', formData, config)
+        axios.post('http://localhost:4000/product', formData, config)
         props.setCloseCreateFunc(false);
         props.setToastFunc(true);
     }

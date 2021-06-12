@@ -50,7 +50,7 @@ export default function DashboardBody(props) {
                 setProduct(res.data)
             } 
         )
-        Axios.get(`http://localhost:4000/news/${props.productId}`)
+        Axios.get(`http://localhost:8000/api/news/${props.productId}`)
             .then(res => {
                 setNews(res.data)
             } 

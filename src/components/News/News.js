@@ -27,7 +27,7 @@ function News(props) {
         <div 
             className="news"
             onClick={()=>{ 
-                props.history.push(`/news/${news._id}`)
+                props.history.push(`/news/${news.id}`)
             }}
         >
             {news &&

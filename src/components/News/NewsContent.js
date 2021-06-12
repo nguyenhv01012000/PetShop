@@ -11,11 +11,11 @@ export default function NewsContent(props) {
 
     useEffect(()=>{ 
         if (news) {
-            Axios.get(`http://localhost:4000/news`)
+            Axios.get(`http://localhost:8000/api/news`)
             .then(res => { 
                 const arr = []
                 for (let i in res.data) { 
-                    if (res.data[i]._id !== news._id) { 
+                    if (res.data[i].id !== news.id) { 
                         if (res.data[i].newCate === news.newCate) {
                             arr.push(res.data[i])
                         } else {

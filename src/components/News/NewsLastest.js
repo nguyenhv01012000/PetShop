@@ -18,7 +18,7 @@ function NewsLastest(props) {
                         <div 
                             className="news newslastest-item"
                             onClick={()=>{ 
-                                props.history.push(`/news/${news[0]._id}`)
+                                props.history.push(`/news/${news[0].id}`)
                             }}
                         >
                             <img src={news[0].newImg} alt=""></img>
@@ -32,7 +32,7 @@ function NewsLastest(props) {
                         <div 
                             className="news newslastest-item"
                             onClick={()=>{ 
-                                props.history.push(`/news/${news[1]._id}`)
+                                props.history.push(`/news/${news[1].id}`)
                             }}
                         >
                             <img src={news[1].newImg} alt=""></img>
@@ -46,7 +46,7 @@ function NewsLastest(props) {
                         <div 
                             className="news newslastest-item"
                             onClick={()=>{ 
-                                props.history.push(`/news/${news[2]._id}`)
+                                props.history.push(`/news/${news[2].id}`)
                             }}
                         >
                             <img src={news[2].newImg} alt=""></img>

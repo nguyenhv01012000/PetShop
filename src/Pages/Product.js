@@ -18,10 +18,10 @@ function ProductForDog(props) {
     const [news, setNews] = useState([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/products`)
+        axios.get(`http://localhost:4000/api/product`)
             .then(res => {
                 for(let i in res.data) { 
-                    if (res.data[i].productCate === props.location.pathname.substr(1)) {
+                    if (res.data[i].productCate !== props.location.pathname.substr(1)) {
                         setProduct(res.data[i])
                     }
                 }
@@ -31,6 +31,7 @@ function ProductForDog(props) {
                 setNews(res.data) 
             })
         window.scrollTo(0,0)
+        console.log(product)
     }, [props.location.pathname]) 
     
     const handleClick = () => {

@@ -54,7 +54,7 @@ function Dashboard(props) {
     const [openMenuMobile, setOpenMenuMobile] = useState(true); 
     const [productId, setProductId] = useState("")
 
-    const socket = socketIOClient(ENDPOINT);
+    //const socket = socketIOClient(ENDPOINT);
 
     const [orderNotice, setOrderNotice] = useState(null) 
     const [userInfo, setUserInfo] = useState(null)

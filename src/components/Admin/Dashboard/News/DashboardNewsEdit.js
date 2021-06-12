@@ -28,7 +28,7 @@ export default function DashboardNewsCreate(props) {
             setNewsImg([news.newImg])
             setNewsCate(news.newCate)
             setNewsContent(news.newContent)
-            axios.get(`http://localhost:4000/news`)
+            axios.get(`http://localhost:8000/api/news`)
                 .then(res => {
                     const test = Object.values(res.data.reduce((a, {newCate}) => {
                         a[newCate] = a[newCate] || {newCate};
@@ -57,7 +57,7 @@ export default function DashboardNewsCreate(props) {
         formData.append("newCate", newsCate);
         formData.append("newTitle", newsTitle);
         formData.append("newContent", newsContent);
-        axios.post(`http://localhost:4000/news/update/${news._id}`, formData, config)
+        axios.put(`http://localhost:8000/api/news/${news.id}`, formData, config)
         props.setCloseEditFunc(false);
         props.setToastFunc(true);
     }
@@ -76,7 +76,7 @@ export default function DashboardNewsCreate(props) {
         const items = [...newsImg]
         items.splice(id, 1)
         setNewsImg(items)
-        axios.post(`http://localhost:4000/news/update/${news._id}`, {
+        axios.put(`http://localhost:8000/api/news/${news.id}`, {
             deleteImgId: id
         })
     }

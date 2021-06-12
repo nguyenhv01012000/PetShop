@@ -265,7 +265,7 @@ function Header(props) {
                                             key={index}
                                             className="cart-body-item flex">
                                             <div className="cart-img">
-                                                <img src={item.productColor[0].productImg[0]}></img>
+                                                <img src={item.productImg}></img>
                                             </div>
                                             <div className="cart-info flex-col">
                                                 <div className="cart-name">{item.productName}</div>
