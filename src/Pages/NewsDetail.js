@@ -20,7 +20,6 @@ function NewsDetail(props) {
             }
         )
     },[props.match.params.id])  
-    
     return (
         <div className="Home">
         <Header/>

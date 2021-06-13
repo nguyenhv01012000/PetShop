@@ -6,11 +6,11 @@ import '../../Styles/News.css'
 export default function NewsBanner(props) {
 
     const news = props.news
-    const [date, setDate] = useState("")
+    const [date, setDate] = useState("")    
     
     useEffect(()=>{
-        Axios.post(`http://localhost:8000/api/news/${news.id}`, {
-            countId: news.id
+        Axios.put(`http://localhost:8000/api/news/${news.id}`, {
+            newView: news.newView+1
         }) 
         const monthNames = [
             "January", "February", "March", "April", "May", "June",
