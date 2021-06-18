@@ -93,7 +93,17 @@
 .login-success {
     color: green; 
 }
- 
+.input-password>input {
+    position: relative;
+    width: 100%;
+}
+.input-password>span {
+    position: absolute;
+    right: 40px;
+    color:#aba7a7;
+    padding-top: 8px;
+    font-weight: 300;
+}
 @media only screen and (max-width: 1100px) {    
     .login-title { 
         margin-left: 100px;

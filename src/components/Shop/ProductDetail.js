@@ -9,6 +9,7 @@ import { CartContext } from '../../contexts/Cart'
 export default function ProductDetail(props) {  
 
     const [imgIndex, setImgIndex] = useState(0)
+
     const [hover, setHover] = useState(false)
     const [colorTab, setColorTab] = useState(0)
 

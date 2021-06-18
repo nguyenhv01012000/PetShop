@@ -3,7 +3,8 @@ import '../../Styles/Home.css'
 import '../../App.css'
 import Feature from '../Home/Feature' 
 import { withRouter } from 'react-router-dom'
-
+import tractive from '../../assets/tractive1.webp';
+import tractive1 from '../../assets/tractive2.webp';
 function ShopFeatures(props) { 
 
     return (
@@ -12,7 +13,7 @@ function ShopFeatures(props) {
                 <div className="Features">
                 <Feature
                     reverse={true}
-                    img={"http://pe.heromc.net:4000/images/cfbe102bcecf88953796934e4cef8421"}
+                    img={tractive}
                     color={"linear-gradient(to right, #00a5e1, rgba(0,127,200,0.5)),linear-gradient(#007fc8, #007fc8)"}
                 >
                     <div className="feature-intro flex">
@@ -32,7 +33,7 @@ function ShopFeatures(props) {
                 </Feature>
                 <Feature
                     reverse={false}
-                    img={"http://pe.heromc.net:4000/images/3a1422567ded62c98857eb374e5d5db9"}
+                    img={tractive1}
                     color={"#f5f6f8"}
                 >
                     <div className="feature-intro flex">
