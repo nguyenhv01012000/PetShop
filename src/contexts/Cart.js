@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 export const CartContext = React.createContext();
 
@@ -9,6 +10,13 @@ export function CartProvider(props) {
     const [total, setTotal] = useState(0)
     const [openCartBox, setOpenCartBox] = useState(false)
     const [closeCartBox, setCloseCartBox] = useState(false)
+    // const [room, setRoom] = useState()
+    // const client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${room}/`);
+    // useEffect(()=>{
+    //     client.onopen = () => {
+    //         console.log('WebSocket Client Connected');
+    //     };
+    // },[room])
 
     const isExists = (cartItems = [], item = {}) => {
         for (let cartItem of cartItems) {
@@ -152,7 +160,8 @@ export function CartProvider(props) {
                 openCartBox: openCartBox,
                 setOpenCartBox: setOpenCartBox,
                 closeCartBox: closeCartBox,
-                setCloseCartBox: setCloseCartBox
+                setCloseCartBox: setCloseCartBox,
+                // setRoom : setRoom
             }}
         >
             {props.children}
