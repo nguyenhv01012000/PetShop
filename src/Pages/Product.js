@@ -17,7 +17,6 @@ function ProductForDog(props) {
     const [product, setProduct] = useState(null)
     const [news, setNews] = useState([])
 
-<<<<<<< HEAD
     useEffect(()=>{
         axios.get(`http://localhost:4000/api/product`)
             .then(res => {
@@ -34,25 +33,6 @@ function ProductForDog(props) {
         window.scrollTo(0,0)
         console.log(product)
     }, [props.location.pathname]) 
-=======
-    console.log(props)
-
-    // useEffect(()=>{
-    //     axios.get(`http://localhost:4000/products`)
-    //         .then(res => {
-    //             for(let i in res.data) { 
-    //                 if (res.data[i].productCate === props.location.pathname.substr(1)) {
-    //                     setProduct(res.data[i])
-    //                 }
-    //             }
-    //         })
-    //     axios.get(`http://localhost:4000/news`)
-    //         .then(res => { 
-    //             setNews(res.data) 
-    //         })
-    //     window.scrollTo(0,0)
-    // }, [props.location.pathname]) 
->>>>>>> origin/anhduong
     
     const handleClick = () => {
         smoothScroll.scrollTo('review'); 

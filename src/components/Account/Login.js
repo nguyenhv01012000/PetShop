@@ -13,7 +13,7 @@ function Login(props) {
     } = useContext(UserContext);
 
     const [tab, setTab] = useState(0)
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState("") 
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [arrSuccess, setArrSuccess] = useState()

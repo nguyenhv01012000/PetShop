@@ -243,9 +243,6 @@ function Header(props) {
                 </div>
             </div> 
             { openCartBox &&
-<<<<<<< HEAD
-                <div className={closeCartBox ? "cart-blur cart-blur-color" : "cart-blur"} >
-=======
                 <div className={closeCartBox ? "cart-blur cart-blur-color" : "cart-blur"} style={{display:'flex'}}>
                     <div style={{flex:1}}
                      onClick={()=> {
@@ -255,7 +252,6 @@ function Header(props) {
                         }, 500);
                     }}  
                     ></div>
->>>>>>> origin/anhduong
                     <div className={closeCartBox ? "cartContainerClose cart-container flex-col" : "cart-container flex-col"}>
                         <div className="cart-header flex">
                             <p>Shopping Cart</p>
