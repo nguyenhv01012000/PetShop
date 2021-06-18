@@ -391,7 +391,7 @@ function Checkout(props) {
                                     <div key={index} className="checkout-detail-item flex">
                                         <p>{item.productName}</p>
                                         <p>x{item.count}</p>
-                                        <p>{item.count * item.productFinalPrice} đ</p>
+                                        <p>{item.productPrice * item.count} đ</p>
                                     </div>
                                 )
                             })

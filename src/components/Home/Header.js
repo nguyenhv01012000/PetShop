@@ -23,6 +23,7 @@ function Header(props) {
     const { 
         cartItems,
         total,
+        totalCount,
         openCartBox,
         setOpenCartBox,
         closeCartBox, 
@@ -150,7 +151,7 @@ function Header(props) {
                     }}
                 >
                     Sản phẩm
-                    <div 
+                    <div    
                         style={{width: `${window.innerWidth}px`}}
                         className={hover === 1 ? "navbar-item-sub showSub" : "navbar-item-sub"}
                     >
@@ -235,14 +236,22 @@ function Header(props) {
                     className="cart-box flex-center" 
                     onClick={()=> {
                         setOpenCartBox(true)
-                        setCloseCartBox(false)
+                        setCloseCartBox(false) 
                     }}>
                     <FontAwesomeIcon icon={faCartPlus} className="icon"/>
                     <div className="cart-count flex-center">{totalCart}</div>
                 </div>
             </div> 
             { openCartBox &&
-                <div className={closeCartBox ? "cart-blur cart-blur-color" : "cart-blur"}>
+                <div className={closeCartBox ? "cart-blur cart-blur-color" : "cart-blur"} style={{display:'flex'}}>
+                    <div style={{flex:1}}
+                     onClick={()=> {
+                        setCloseCartBox(true)
+                        setTimeout(() => { 
+                            setOpenCartBox(false)
+                        }, 500);
+                    }}  
+                    ></div>
                     <div className={closeCartBox ? "cartContainerClose cart-container flex-col" : "cart-container flex-col"}>
                         <div className="cart-header flex">
                             <p>Shopping Cart</p>
@@ -265,13 +274,13 @@ function Header(props) {
                                             key={index}
                                             className="cart-body-item flex">
                                             <div className="cart-img">
-                                                <img src={item.productColor[0].productImg[0]}></img>
+                                                <img src={item.productImg}></img>
                                             </div>
                                             <div className="cart-info flex-col">
                                                 <div className="cart-name">{item.productName}</div>
                                                 <div className="cart-body-count flex">
                                                     <div 
-                                                        id={item._id}
+                                                        id={item.id}
                                                         onClick={minusCount}
                                                         className="cart-body-count-icon flex-center"
                                                     >
@@ -279,7 +288,7 @@ function Header(props) {
                                                     </div>
                                                     {item.count}
                                                     <div 
-                                                        id={item._id}
+                                                        id={item.id}
                                                         onClick={plusCount}
                                                         className="cart-body-count-icon flex-center"
                                                     >
@@ -289,13 +298,13 @@ function Header(props) {
                                             </div>
                                             <div className="cart-price flex-col">
                                                 <div 
-                                                    id={item._id}
+                                                    id={item.id}
                                                     onClick={removeFromCart}
                                                     className="cart-body-count-icon flex-center"
                                                 >
                                                     <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faTimes}/>
                                                 </div>
-                                                {item.productFinalPrice * item.count} đ
+                                                {item.productPrice * item.count} đ
                                             </div>
                                         </div>
                                     )
@@ -304,7 +313,7 @@ function Header(props) {
                         </div>
                         <div className="cart-checkout flex-col">
                             <div className="cart-total flex">
-                                <p>Total</p>
+                                <p>Total {totalCount}</p>
                                 <p>{total} đ</p>
                             </div> 
                             <div 
@@ -323,6 +332,7 @@ function Header(props) {
                     </div> 
                 </div>
             }
+
         </div>
     )
 }

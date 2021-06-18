@@ -7,12 +7,13 @@ export function CartProvider(props) {
     const [cartItems, setCartItems] = useState([]) 
     const [clickedCart, setClickedCart] = useState(0)
     const [total, setTotal] = useState(0)
+    const [totalCount, setTotalCount] = useState(0)
     const [openCartBox, setOpenCartBox] = useState(false)
     const [closeCartBox, setCloseCartBox] = useState(false)
 
     const isExists = (cartItems = [], item = {}) => {
         for (let cartItem of cartItems) {
-            if (cartItem._id === item._id) {
+            if (cartItem.id === item.id) {
                 return cartItem;
             }
         }
@@ -58,7 +59,7 @@ export function CartProvider(props) {
                         virtualCart.push({...product, count: 1})
                     } else {
                         for (let i = 0; i < virtualCart.length; i++) {
-                            if (virtualCart[i]._id === product._id) {
+                            if (virtualCart[i].id == product.id) {
                                 virtualCart[i].count += 1
                                 break
                             }
@@ -68,6 +69,7 @@ export function CartProvider(props) {
                 localStorage.setItem('cart', JSON.stringify(virtualCart))
                 setCartItems(virtualCart)
                 getTotal(virtualCart)
+                gettotalCount(virtualCart)
             }
         }, 500);
     } 
@@ -76,13 +78,14 @@ export function CartProvider(props) {
         const id = event.target.id
         const virtualCart = [...cartItems]
         for (let i=0;i<virtualCart.length;i++) {
-            if (virtualCart[i]._id === id) {
+            if (virtualCart[i].id == id) {
                 virtualCart.splice(i, 1)
             }
         }
         localStorage.setItem('cart', JSON.stringify(virtualCart))
         setCartItems(virtualCart)
         getTotal(virtualCart)
+        gettotalCount(virtualCart)
     } 
 
     const minusCount = (event) => {
@@ -90,7 +93,7 @@ export function CartProvider(props) {
         console.log(id)
         const virtualCart = [...cartItems]
         for (let i=0;i<virtualCart.length;i++) {
-            if (virtualCart[i]._id === id) {
+            if (virtualCart[i].id == id) {
                 if (virtualCart[i].count > 1) {
                     virtualCart[i].count = virtualCart[i].count - 1
                 }
@@ -99,21 +102,23 @@ export function CartProvider(props) {
         localStorage.setItem('cart', JSON.stringify(virtualCart))
         setCartItems(virtualCart)
         getTotal(virtualCart)
+        gettotalCount(virtualCart)
     }
     
     const plusCount = (event) => {
         const id = event.target.id
+        
         const virtualCart = [...cartItems]
         for (let i=0;i<virtualCart.length;i++) {
-            if (virtualCart[i]._id === id) {
+            if (virtualCart[i].id == id) {
                 virtualCart[i].count += 1
             }
         }
         localStorage.setItem('cart', JSON.stringify(virtualCart))
         setCartItems(virtualCart)
         getTotal(virtualCart)
+        gettotalCount(virtualCart)
     }
-
     const updateCount = (event) => {
         const id = event.target.id
         const value = event.target.value
@@ -126,18 +131,27 @@ export function CartProvider(props) {
         localStorage.setItem('cart', JSON.stringify(virtualCart))
         setCartItems(virtualCart)
         getTotal(virtualCart)
+        gettotalCount(virtualCart)
     }
 
     const getTotal = (arr) => {
         let virtualTotal = 0
         for (let i in arr) {
-            virtualTotal += arr[i].count * arr[i].productFinalPrice
+            virtualTotal += arr[i].count * arr[i].productPrice
         } 
         localStorage.removeItem('total')
         localStorage.setItem('total', JSON.stringify(virtualTotal))
         setTotal(virtualTotal)
     }
-    
+    const gettotalCount = (arr) => {
+        let virtualTotal = 0
+        for (let i in arr) {
+            virtualTotal += arr[i].count
+        }
+        localStorage.removeItem('totalCount')
+        localStorage.setItem('totalCount', JSON.stringify(virtualTotal))
+        setTotalCount(virtualTotal)
+    }
     return (
         <CartContext.Provider
             value={{
@@ -149,6 +163,7 @@ export function CartProvider(props) {
                 minusCount: minusCount, 
                 updateCount: updateCount,
                 total: total,
+                totalCount: totalCount,
                 openCartBox: openCartBox,
                 setOpenCartBox: setOpenCartBox,
                 closeCartBox: closeCartBox,
