@@ -3,7 +3,7 @@ import '../../../../App.css'
 import '../../../../Styles/Dashboard.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
@@ -11,59 +11,54 @@ var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/33/')
 
 
 export default function DashboardInbox(props) {
-    
+
     const [allChatData, setAllChatData] = useState([])
     const [room, setRoom] = useState([]);
     const [constAllChatData, setConstAllChatData] = useState([])
     const [roomIndex, setRoomIndex] = useState(0)
-    const [roomIndex1, setRoomIndex1] = useState(0)
-
     const [chatInput, setChatInput] = useState("")
     const [searchInput, setSearchInput] = useState("")
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/chat/?username=admin`)
-        .then(res => {
-            setRoom(res.data)
-        })
-    },[])
+            .then(res => {
+                setRoom(res.data)
+            })
+    }, [])
 
     useEffect(() => {
 
-        const test = ()=>{
-            client.close() 
-            client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${roomIndex}/`)
-            // client.readyState
-            
-            client.onopen = function (event){
-                client.send(JSON.stringify({
+        client.close()
+        client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${roomIndex}/`)
+        // client.readyState
+
+        client.onopen = function (event) {
+            client.send(JSON.stringify({
                 command: "fetch_messages",
                 username: "admin",
                 chatId: roomIndex
             }))
-            
+
             client.onmessage = (message) => {
                 const dataFromServer = JSON.parse(message.data);
                 console.log('got reply! ', dataFromServer);
-                if (dataFromServer.command === "messages" ) {
+                if (dataFromServer.command === "messages") {
                     setAllChatData([])
                     dataFromServer.messages.map(item => {
-                        setAllChatData(allChatData=>[...allChatData,item])
+                        setAllChatData(allChatData => [...allChatData, item])
                     })
-                    if (dataFromServer.messages.length>0&&messageRef.current) messageRef.current.scrollIntoView({ behavior: "smooth" })
+                    if (dataFromServer.messages.length > 0 && messageRef.current) messageRef.current.scrollIntoView({ behavior: "smooth" })
                 }
-                else{
-                    setAllChatData(allChatData=>[...allChatData, dataFromServer.message])
-                    setTimeout(()=>{
+                else {
+                    setAllChatData(allChatData => [...allChatData, dataFromServer.message])
+                    setTimeout(() => {
                         if (messageRef.current) messageRef.current.scrollIntoView({ behavior: "smooth" })
                     }, 100)
-                    
+
                 }
             }
-            }
         }
-        test()
-    },[roomIndex])
+    }, [roomIndex])
 
     const handleOnChange = (event) => {
         setChatInput(event.target.value)
@@ -105,51 +100,51 @@ export default function DashboardInbox(props) {
     const sortDateChat = [...allChatData]
 
     const [openTimeTooltip, setOpenTimeTooltip] = useState("")
- 
+
 
     return (
         <div className="boxchat-admin flex">
             <div className="boxchat-left">
                 <div className="boxchat-search">
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder="Search"
                         value={searchInput}
-                        onChange={(event)=>{
+                        onChange={(event) => {
                             setSearchInput(event.target.value)
                             filterOnSearch(event.target.value)
                         }}
                     ></input>
                 </div>
                 <div className="boxchat-list">
-                    { room.length > 0 && 
-                        room.map((item,index)=>{
-                           return (
-                                <div 
+                    {room.length > 0 &&
+                        room.map((item, index) => {
+                            return (
+                                <div
                                     key={index}
                                     className={roomIndex === item.id ? "boxchat-item flex boxchat-item-active" : "boxchat-item flex"}
-                                    onClick={()=>{
+                                    onClick={() => {
                                         setRoomIndex(item.id)
                                     }}
                                 >
-                                    <div className="boxchat-avt flex-center" style={{pointerEvents: 'none'}}>
-                                        { item.userInfo && 
-                                            <img 
+                                    <div className="boxchat-avt flex-center" style={{ pointerEvents: 'none' }}>
+                                        {item.userInfo &&
+                                            <img
                                                 src={item.userInfo.userAvt}
                                                 alt=""
                                             ></img>
                                         }
-                                        { !item.userInfo && 
-                                            <img 
+                                        {!item.userInfo &&
+                                            <img
                                                 src="https://icon-library.com/images/avatar-icon-png/avatar-icon-png-8.jpg"
                                                 alt=""
                                             ></img>
                                         }
                                     </div>
-                                    <div className="flex-col" style={{pointerEvents: 'none', width: '100%', justifyContent: 'space-between'}}>
+                                    <div className="flex-col" style={{ pointerEvents: 'none', width: '100%', justifyContent: 'space-between' }}>
                                         <p className="boxchat-name">Room Chat : {item.id}</p>
                                         <div className="boxchat-first flex">
-   
+
                                             Messages : {item.messages.length}
 
                                         </div>
@@ -162,26 +157,26 @@ export default function DashboardInbox(props) {
             </div>
             <div className="boxchat-main">
                 <div className="boxchat-box">
-                    <div 
+                    <div
                         className="boxchat-contents"
                     >
                         {/* { (sortDateChat.length>0 && window.innerWidth > 700)&& */
-                            <div 
+                            <div
                                 className="flex-col chat-box-list">
                                 {
                                     allChatData.map((item, index) => {
                                         return (
-                                            <div 
+                                            <div
                                                 ref={messageRef}
                                                 key={index}
                                                 className="chat-list">
                                                 {
-                                                    item.author === "admin" && 
+                                                    item.author === "admin" &&
                                                     <div className="box-chat-clienttext"
-                                                        onMouseEnter={()=>{
+                                                        onMouseEnter={() => {
                                                             setOpenTimeTooltip(item.time)
                                                         }}
-                                                        onMouseLeave={()=>{
+                                                        onMouseLeave={() => {
                                                             setOpenTimeTooltip("")
                                                         }}
                                                     >
@@ -189,30 +184,30 @@ export default function DashboardInbox(props) {
                                                     </div>
                                                 }
                                                 {
-                                                    item.author !== "admin" && 
+                                                    item.author !== "admin" &&
                                                     <div className="box-chat-admintext"
-                                                        onMouseEnter={()=>{
+                                                        onMouseEnter={() => {
                                                             setOpenTimeTooltip(item.time)
                                                         }}
-                                                        onMouseLeave={()=>{
+                                                        onMouseLeave={() => {
                                                             setOpenTimeTooltip("")
                                                         }}
                                                     >
-                                                        <p style={{pointerEvents: 'none'}}>{item.content}</p>
+                                                        <p style={{ pointerEvents: 'none' }}>{item.content}</p>
                                                     </div>
                                                 }
                                             </div>
                                         )
                                     })
                                 }
-                            </div>  
+                            </div>
                         }
                     </div>
                 </div>
                 <div className="boxchat-type">
                     <form onSubmit={sendChatInput} className="boxchat-type-form">
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             onChange={handleOnChange}
                             value={chatInput}
                             placeholder="Type your message..."

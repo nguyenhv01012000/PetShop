@@ -9,7 +9,7 @@ import axios from 'axios'
 import { UserContext } from '../contexts/User';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
-const client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/33/');
+var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/0/');
 
 function OpenChatBtn(props) {
     const messageRef = useRef();
@@ -24,43 +24,51 @@ function OpenChatBtn(props) {
     const [userName, setUserName] = useState("")
     const [userEmail, setUserEmail] = useState("")
     const [userInfoExist, setUserInfoExist] = useState(false)
+    const [room,setRoom] = useState(0)
+    const [error,setError] = useState()
+
     const location = props.history.location.pathname;
 
     useEffect(() => {
-        client.onopen = () => {
-            console.log('WebSocket Client Connected');
-        };
-        client.onmessage = (message) => {
-            const dataFromServer = JSON.parse(message.data);
-            console.log('got reply! ', dataFromServer);
-            if (dataFromServer.command === "messages") {
-                dataFromServer.messages.map(item=>{
-                    setChatList(chatList=>[...chatList,item])
-                })
-            }
-            else{
-                setChatList(chatList=>[...chatList, dataFromServer.message])
-            }
-            setTimeout(()=>{
-                messageRef.current.scrollIntoView({ behavior: "smooth" })
-            }, 100)
-        }
+        
         }, [])
     const sendFirstChatOnSubmit = event => {
         event.preventDefault() 
 
-        client.send(JSON.stringify({
-            command: "fetch_messages",
-            username: "nguyen",
-            chatId: 33
-        }));
-
-        client.send(JSON.stringify({
-            command: "new_message",
-            from: "nguyen",
-            message: inputValue.chatContent,
-            chatId: 33
-        }));
+        axios.post("http://127.0.0.1:8000/chat/create/", {
+          messages: [],
+          participants: [userName,'admin']
+        })
+        .then(res => {
+            client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${res.data.id}/`);
+            client.onopen = function (event){
+                client.send(JSON.stringify({
+                    command: "new_message",
+                    from: userName,
+                    message: inputValue.chatContent,
+                    chatId: res.data.id
+                }))
+                setRoom(res.data.id)
+            }
+            client.onmessage = (message) => {
+                const dataFromServer = JSON.parse(message.data);
+                console.log('got reply! ', dataFromServer);
+                if (dataFromServer.command === "messages") {
+                    dataFromServer.messages.map(item=>{
+                        setChatList(chatList=>[...chatList,item])
+                    })
+                }
+                else{
+                    setChatList(chatList=>[...chatList, dataFromServer.message])
+                }
+                setTimeout(()=>{
+                    messageRef.current.scrollIntoView({ behavior: "smooth" })
+                }, 100)
+            }
+        })
+        .catch(err => {
+            setError("This UserName does not exist!")
+        });
     }
     const handleChange = (event) => {
         setInputValue({ ...inputValue, [event.target.name]: event.target.value })
@@ -70,9 +78,9 @@ function OpenChatBtn(props) {
         console.log(chatList)
         client.send(JSON.stringify({
             command: "new_message",
-            from: "nguyen",
+            from: userName,
             message: inputValue.messageSend,
-            chatId: 33
+            chatId: room
         }));
         inputRef.current.value = ""
     }
@@ -132,6 +140,7 @@ function OpenChatBtn(props) {
                         {userInfoExist === false &&
                             <form onSubmit={sendFirstChatOnSubmit} className={openChat ? "form-chat hide_chat_box_item" : "form-chat"}>
                                 <label>Introduce yourself *</label>
+                                <p style={{"color":"red"}}>{error}</p>
                                 <input
                                     type="text"
                                     onChange={(event) => {
