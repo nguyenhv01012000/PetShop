@@ -14,7 +14,7 @@ export default function DashboardUserTable(props) {
     const [constOrder, setConstOrder] = useState([])
     
     useEffect(()=>{
-        axios.get(`http://localhost:4000/order`)
+        axios.get(`http://localhost:8000/api/order`)
             .then(res => {
                 setOrder(res.data)
                 setConstOrder(res.data)
@@ -101,11 +101,11 @@ export default function DashboardUserTable(props) {
 
     const deleteOnClick = (event) => {
         const id = event.target.id
-        axios.post(`http://localhost:4000/order/delete/:${id}`, {
+        axios.delete(`http://localhost:8000/api/order/${id}`, {
             id: id
         }).then(()=>{ 
             setOrder(order.filter((item)=>{
-                return item._id !== id
+                return item.id != id
             }))
         })
     }
@@ -269,14 +269,14 @@ export default function DashboardUserTable(props) {
                                                     <div 
                                                         className="action-item flex-center action-green"
                                                         onClick={props.setOpenEditFunc}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faPencilAlt}/>
                                                     </div>
                                                     <div 
                                                         className="action-item flex-center action-red"
                                                         onClick={deleteOnClick}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faTimes}/>
                                                     </div>

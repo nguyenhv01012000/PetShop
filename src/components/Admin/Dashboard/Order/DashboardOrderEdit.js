@@ -25,14 +25,10 @@ export default function DashboardOrderCreate(props) {
     const [user, setUser] = useState("")
     const [chooseUser, setChooseUser] = useState(false)
     const order = props.order
+    console.log(order)
 
     useEffect(()=>{
-        if (chooseUser === false) {
-            axios.get(`http://localhost:4000/vietnam`)
-                .then(res => {
-                    setTinh(res.data[0].tinh)
-                    setHuyen(res.data[0].huyen)
-                    if (order) {
+                  if (order) {
                         setOrderName(order.orderName)
                         setOrderEmail(order.orderEmail)
                         setOrderPhone(order.orderPhone)
@@ -42,7 +38,7 @@ export default function DashboardOrderCreate(props) {
                         setOrderPaymentMethod(order.orderPaymentMethod)
                         if(typeof order.orderList !== "undefined") {
                             order.orderList.map((item)=>{
-                                axios.get(`http://localhost:4000/products/${item.id}`)
+                                axios.get(`http://localhost:8000/api/product/${item.id}`)
                                     .then(res => {
                                         res.data.count = item.amount
                                         setProductList(productList => [...productList, res.data])
@@ -52,34 +48,60 @@ export default function DashboardOrderCreate(props) {
                             return
                         }
                         setOrderPaymentMethod(order.orderPaymentMethod)
-                        if (order.orderTinh !== "") {
-                            res.data[0].tinh.filter((item)=>{
-                                if (order.orderTinh === item.name) {
-                                    setProvinceId(item.id)
-                                }
-                                return null
-                            })
-                            setOrderProvince(order.orderTinh)
-                        }
-                        if (order.orderHuyen !== "") {
-                            setOrderDistric(order.orderHuyen)
-                        }
-                    }
-                }
-            )
-        } 
-        axios.get(`http://localhost:4000/products`)
+                  }
+        // if (chooseUser === false) {
+        //     axios.get(`http://localhost:4000/vietnam`)
+        //         .then(res => {
+        //             setTinh(res.data[0].tinh)
+        //             setHuyen(res.data[0].huyen)
+        //             if (order) {
+        //                 setOrderName(order.orderName)
+        //                 setOrderEmail(order.orderEmail)
+        //                 setOrderPhone(order.orderPhone)
+        //                 setOrderAddress(order.orderAddress)
+        //                 setOrderProvince(order.orderTinh)
+        //                 setOrderDistric(order.orderHuyen)
+        //                 setOrderPaymentMethod(order.orderPaymentMethod)
+        //                 if(typeof order.orderList !== "undefined") {
+        //                     order.orderList.map((item)=>{
+        //                         axios.get(`http://localhost:8000/api/product/${item.id}`)
+        //                             .then(res => {
+        //                                 res.data.count = item.amount
+        //                                 setProductList(productList => [...productList, res.data])
+        //                             })
+        //                         return null
+        //                     })
+        //                     return
+        //                 }
+        //                 setOrderPaymentMethod(order.orderPaymentMethod)
+        //                 if (order.orderTinh !== "") {
+        //                     res.data[0].tinh.filter((item)=>{
+        //                         if (order.orderTinh === item.name) {
+        //                             setProvinceId(item.id)
+        //                         }
+        //                         return null
+        //                     })
+        //                     setOrderProvince(order.orderTinh)
+        //                 }
+        //                 if (order.orderHuyen !== "") {
+        //                     setOrderDistric(order.orderHuyen)
+        //                 }
+        //             }
+        //         }
+        //     )
+        // } 
+        axios.get(`http://localhost:8000/api/product`)
             .then(res => {
                 setProduct(res.data)
             }
         )
-        axios.get(`http://localhost:4000/users/list`)
+        axios.get(`http://localhost:8000/api/users`)
             .then(res => {
                 setUserList(res.data)
                 res.data.filter((item)=>{
-                    if (item.userEmail === user) {
-                        setOrderName(item.userName)
-                        setOrderEmail(item.userEmail)
+                    if (item.email === user) {
+                        setOrderName(item.username)
+                        setOrderEmail(item.email)
                         setOrderPhone(item.userPhone)
                         setOrderProvince(item.userProvince)
                         setOrderDistric(item.userDistric)
@@ -114,7 +136,7 @@ export default function DashboardOrderCreate(props) {
             total += productList[i].productFinalPrice * productList[i].count
             listOrder.push(data)
         }
-        axios.post(`http://localhost:4000/order/update/${order._id}`, {
+        axios.post(`http://localhost:8000/api/order/${order.id}`, {
             orderName: orderName,
             orderEmail: orderEmail,
             orderPhone: orderPhone,
@@ -164,8 +186,8 @@ export default function DashboardOrderCreate(props) {
                                         return (
                                             <option
                                                 key={index}
-                                                value={item.userEmail}
-                                            >{item.userEmail}</option>
+                                                value={item.email}
+                                            >{item.email}</option>
                                         )
                                     })
                                 }

@@ -27,7 +27,7 @@ export default function DashboardMain() {
     const [incomeMonthPercent, setIncomeMonthPercent] = useState({}) 
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/products`)
+        axios.get(`http://localhost:8000/api/products`)
             .then(res => {
                 setProducts(res.data)
                 let virtualProducts = [...res.data]
@@ -43,7 +43,7 @@ export default function DashboardMain() {
                 setTopProductSales(virtualProducts2)
             }
         )
-        axios.get(`http://localhost:4000/users/list`)
+        axios.get(`http://localhost:8000/api/users`)
             .then(res => {
                 setUser(res.data)
             }
@@ -53,7 +53,7 @@ export default function DashboardMain() {
                 setEmail(res.data)
             }
         ) 
-        axios.get(`http://localhost:4000/order`)
+        axios.get(`http://localhost:8000/api/order`)
             .then(res => {
                 setOrder(res.data)
                 const topCustomer2 = Object.values(res.data.reduce((a, {orderEmail, orderName, orderTotal, orderAvatar}) => {
@@ -247,10 +247,10 @@ export default function DashboardMain() {
                     )
                 })}
             </div>
-            <DashboardLocation
+            {/* <DashboardLocation
                 order={order}
-            /> 
-            <div className="row flex">
+            />  */}
+            {/* <div className="row flex">
                 <DashboardChartPie
                     email = {email}
                     color = "pink"
@@ -282,7 +282,7 @@ export default function DashboardMain() {
                     title = "Todo list"
                     color = "green"
                 />
-            </div>
+            </div> */}
             <div className="row flex">
                 <DashboardChartLine
                     icon = {faTasks}

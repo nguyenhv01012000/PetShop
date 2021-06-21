@@ -10,9 +10,9 @@ import { ZaloPay } from '../components/zalopay';
 import QRCode from 'qrcode.react'
 import { APIs } from '../components/common';
 import $ from 'jquery';  
-import socketIOClient from "socket.io-client"
+// import socketIOClient from "socket.io-client"
 
-const ENDPOINT = "http://localhost:4000";
+// const ENDPOINT = "http://localhost:4000";
  
 function Checkout(props) {
 
@@ -24,7 +24,7 @@ function Checkout(props) {
         cartItems,
         total
     } = useContext(CartContext);
-    const socket = socketIOClient(ENDPOINT)
+    //const socket = socketIOClient(ENDPOINT)
 
     const [tinh, setTinh] = useState([])
     const [huyen, setHuyen] = useState([])
@@ -112,7 +112,7 @@ function Checkout(props) {
         for (let i in cartItems) {
             cartId.push(
                 {
-                    id: cartItems[i]._id,
+                    id: cartItems[i].id,
                     amount: cartItems[i].count 
                 }
             )
@@ -139,24 +139,24 @@ function Checkout(props) {
                 alert("Bạn chưa hoàn tất thanh toán!")
                 return
             } else {
-                Axios.post('http://localhost:4000/order', data)
+                Axios.post('http://localhost:8000/api/order', data)
                 setTimeout(()=>{ 
                     alert("Đặt hàng thành công!")
                     localStorage.removeItem('total')
                     localStorage.removeItem('cart')  
                     props.history.push("/")
-                    socket.emit('placeAnOrder', data)
+                    //socket.emit('placeAnOrder', data)
                     window.location.reload(false); 
                 }, 1000)
             }
         } else {
-            Axios.post('http://localhost:4000/order', data)
+            Axios.post('http://localhost:8000/api/order', data)
             setTimeout(()=>{ 
                 alert("Đặt hàng thành công!")
                 localStorage.removeItem('total')
                 localStorage.removeItem('cart')  
                 props.history.push("/")
-                socket.emit('placeAnOrder', data)
+                //socket.emit('placeAnOrder', data)
                 window.location.reload(false); 
             }, 1000)
         } 
