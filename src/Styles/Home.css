@@ -425,6 +425,29 @@
     margin-top: 10px;
     cursor: pointer;
 }
+.header-none {
+    position: relative;
+}
+.closelanguageBox {
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    background-color: #fff;
+    width: 80px;
+    height: 320px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.closelanguageBox>ul>li {
+    list-style: none;
+    margin: 0 auto;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.closelanguageBox>ul>li:hover {
+    background-color: #e5f1f7 ;
+    transition: background-color .1s ease-in-out;
+}
 /*------- Intro -------*/
 
 .Intro {
