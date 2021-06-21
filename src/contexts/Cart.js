@@ -19,7 +19,7 @@ export function CartProvider(props) {
         }
         return false;
     }
-
+    
     useEffect(()=>{
         if (localStorage.getItem('cart')) {
             setCartItems(JSON.parse(localStorage.getItem('cart')))
