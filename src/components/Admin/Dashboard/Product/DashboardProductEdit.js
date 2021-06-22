@@ -82,7 +82,7 @@ export default function DashboardProductEdit(props) {
             setProductSex(product.productSex)
             setProductSize(product.productSize)
             setProductGroupCate(product.productGroupCate)
-            axios.get(`http://localhost:4000/category`)
+            axios.get(`http://localhost:8000/category`)
                 .then(res => {
                     setCate(res.data)
                 }

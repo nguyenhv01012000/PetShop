@@ -17,7 +17,7 @@ export default function DashboardProductTable(props) {
     const [isSortBySold, setIsSortBySold] = useState(false)
     
     useEffect(()=>{
-        axios.get(`http://localhost:4000/product`)
+        axios.get(`http://localhost:8000/api/product`)
             .then(res => {
                 setProducts(res.data)
                 setConstProducts(res.data)
