@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faCartPlus, faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faCartPlus, faMinus, faPlus, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import '../../Styles/Home.css'
 import dog from '../../assets/dog.jpeg'
 import cat from '../../assets/cat.jpg'
@@ -32,7 +32,7 @@ function Header(props) {
         plusCount,
         removeFromCart
     } = useContext(CartContext);
-
+    const[openLaguageBox, setOpenLaguageBox] = useState(false)
     useEffect(()=> {
         Axios.get(`http://pe.heromc.net:4000/users/${localStorage.getItem('user-id')}`, { 
             headers: {"authorization" : `Bearer ${localStorage.getItem('token')}`}
@@ -66,7 +66,12 @@ function Header(props) {
             document.body.style.overflow = 'hidden';
         }
     }
-
+    const address = props.location.pathname;
+    const language = [" English (US) ", " English (GB) ", " Deutsch ", " Español ", " Français ", " Italiano ", " български ", " Česky ", " Nederlands ", " Svenska ", " Dansk ", " Polski ", " Русский "]
+    const [changeText, setChangeText] = useState(localStorage.getItem('language'))
+    useEffect(()=>{
+        localStorage.setItem('language', changeText)
+    }, [changeText]) 
     return (
         <div className="Header flex">  
             <div 
@@ -220,7 +225,8 @@ function Header(props) {
                 <Link to="/news" className="navbar-item flex-center">blog</Link> 
             </div>
             <div className="cart flex-center">
-                <div 
+               { address !== "/login" &&
+               <div 
                     className="account"
                     onClick={()=>{
                         if (userInfo) { 
@@ -231,8 +237,9 @@ function Header(props) {
                     }}
                 >
                     Tài khoản
-                </div>
-                <div 
+                </div>}
+                { address !== "/login" && 
+                    <div 
                     className="cart-box flex-center" 
                     onClick={()=> {
                         setOpenCartBox(true)
@@ -240,8 +247,38 @@ function Header(props) {
                     }}>
                     <FontAwesomeIcon icon={faCartPlus} className="icon"/>
                     <div className="cart-count flex-center">{totalCart}</div>
-                </div>
-            </div> 
+                </div>}
+                { address === "/login" &&
+                    <div className="header-none flex-center" style={{color:"#007FC8",fontSize:"14px", cursor:"pointer"}}
+                    onClick={()=> {
+                        setOpenLaguageBox(!openLaguageBox)
+
+                    }}
+                    >
+                        {changeText}    
+                        <FontAwesomeIcon icon={faChevronDown} style={{color:"#007FC8",fontSize:"9px"}}/>
+                        
+                    </div>
+                }
+            </div>
+            { openLaguageBox && 
+                <div className="closelanguageBox">
+                <ul>
+                   {
+                       language.map ((item)=>{
+                          return <li
+                            onClick={()=> {
+                                setChangeText(item)
+                                setOpenLaguageBox(false)
+                            }}
+                          >{item}</li>
+                       }                       
+                       )
+                   }
+
+                </ul>
+            </div>
+            }
             { openCartBox &&
                 <div className={closeCartBox ? "cart-blur cart-blur-color" : "cart-blur"} style={{display:'flex'}}>
                     <div style={{flex:1}}

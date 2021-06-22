@@ -13,7 +13,7 @@ export default function DashboardUserTable(props) {
     const [constUser, setConstUser] = useState([])
     
     useEffect(()=>{
-        axios.get(`http://localhost:4000/users/list`)
+        axios.get(`http://localhost:8000/api/users`)
             .then(res => {
                 setUser(res.data)
                 setConstUser(res.data)
@@ -99,11 +99,11 @@ export default function DashboardUserTable(props) {
     }
 
     const deleteOnClick = (event) => {
-        axios.post(`http://localhost:4000/users/delete/:${event.target.id}`, {
+        axios.delete(`http://localhost:8000/api/users/${event.target.id}`, {
             id: event.target.id
         })
         setUser(user.filter((item)=>{
-            return item._id !== event.target.id
+            return item.id != event.target.id
         }))
     }
 
@@ -114,7 +114,7 @@ export default function DashboardUserTable(props) {
         const searchInput = event.target.value
         const search = []
         for (let i in constUser) {
-            if ((constUser[i].userName).toLowerCase().includes(searchInput)) {
+            if ((constUser[i].username).toLowerCase().includes(searchInput)) {
                 search.push(constUser[i])
             }
         }
@@ -122,12 +122,12 @@ export default function DashboardUserTable(props) {
     }
 
     const sortTable = (event) => {
-        if (event.target.id === "UserName") {
+        if (event.target.id === "username") {
             if (isSortByName) {
                 const sortByName = [...user]
                 sortByName.sort(function(a, b) {
-                    var userA = a.userName.toLowerCase();
-                    var userB = b.userName.toLowerCase(); 
+                    var userA = a.username.toLowerCase();
+                    var userB = b.username.toLowerCase(); 
                     if(userA === userB) return 0; 
                     return userA > userB ? 1 : -1;
                 })
@@ -136,8 +136,8 @@ export default function DashboardUserTable(props) {
             } else {
                 const sortByName = [...user]
                 sortByName.sort(function(a, b) {
-                    var userA = a.userName.toLowerCase();
-                    var userB = b.userName.toLowerCase(); 
+                    var userA = a.username.toLowerCase();
+                    var userB = b.username.toLowerCase(); 
                     if(userA === userB) return 0; 
                     return userA < userB ? 1 : -1;
                 })
@@ -198,17 +198,17 @@ export default function DashboardUserTable(props) {
                                             <td style={{display: 'flex'}}>
                                                 <img 
                                                     className="table-mobile-useravt"
-                                                    src={item.userAvt} 
+                                                    src="https://icon-library.com/images/avatar-icon-png/avatar-icon-png-8.jpg" 
                                                     width="70px" height="80px"
                                                     style={{padding: '5px 0', borderRadius: '50%'}}
                                                     alt=""
                                                 />
                                             </td>
                                             <td>
-                                                <p>{item.userName}</p>
+                                                <p>{item.username}</p>
                                             </td>
                                             <td className="table-mobile-useremail">
-                                                <p>{item.userEmail}</p>
+                                                <p>{item.email}</p>
                                             </td>
                                             <td className="table-mobile-userphone">
                                                 <p>{item.userPhone}</p>
@@ -221,14 +221,14 @@ export default function DashboardUserTable(props) {
                                                     <div 
                                                         className="action-item flex-center action-green"
                                                         onClick={props.setOpenEditFunc}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faPencilAlt}/>
                                                     </div>
                                                     <div 
                                                         className="action-item flex-center action-red"
                                                         onClick={deleteOnClick}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faTimes}/>
                                                     </div>

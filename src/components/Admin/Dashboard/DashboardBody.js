@@ -45,6 +45,7 @@ export default function DashboardBody(props) {
     }
 
     useEffect(()=> {
+        console.log(props.productId)
         Axios.get(`http://localhost:4000/products/${props.productId}`)
             .then(res => {
                 setProduct(res.data)
@@ -55,12 +56,12 @@ export default function DashboardBody(props) {
                 setNews(res.data)
             } 
         )
-        Axios.get(`http://localhost:4000/users/list/${props.productId}`)
+        Axios.get(`http://localhost:8000/api/users/${props.productId}`)
             .then(res => {
                 setUser(res.data)
             } 
         )
-        Axios.get(`http://localhost:4000/order/${props.productId}`)
+        Axios.get(`http://localhost:8000/api/order/${props.productId}`)
             .then(res => {
                 setOrder(res.data)
             } 

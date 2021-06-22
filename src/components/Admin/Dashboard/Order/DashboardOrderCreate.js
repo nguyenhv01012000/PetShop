@@ -36,7 +36,7 @@ export default function DashboardOrderCreate(props) {
             listOrder.push(data)
         }
 
-        axios.post('http://localhost:4000/order', {
+        axios.post('http://localhost:8000/api/order', {
             orderName: orderName,
             orderEmail: orderEmail,
             orderPhone: orderPhone,
@@ -56,13 +56,13 @@ export default function DashboardOrderCreate(props) {
     const [user, setUser] = useState("")
 
     useEffect(()=>{
-        axios.get(`http://localhost:4000/users/list`)
+        axios.get(`http://localhost:8000/api/users`)
             .then(res => {
                 setUserList(res.data)
                 res.data.filter((item)=>{
-                    if (item.userEmail === user) {
-                        setOrderName(item.userName)
-                        setOrderEmail(item.userEmail)
+                    if (item.email === user) {
+                        setOrderName(item.username)
+                        setOrderEmail(item.email)
                         setOrderPhone(item.userPhone)
                         setOrderProvince(item.userProvince)
                         setOrderDistric(item.userDistric)
@@ -90,7 +90,7 @@ export default function DashboardOrderCreate(props) {
                 setHuyen(res.data[0].huyen)
             }
         )
-        axios.get(`http://localhost:4000/products`)
+        axios.get(`http://localhost:8000/api/product`)
             .then(res => {
                 setProduct(res.data)
             }
@@ -137,8 +137,8 @@ export default function DashboardOrderCreate(props) {
                                         return (
                                             <option
                                                 key={index}
-                                                value={item.userEmail}
-                                            >{item.userEmail}</option>
+                                                value={item.email}
+                                            >{item.email}</option>
                                         )
                                     })
                                 }
@@ -252,7 +252,7 @@ export default function DashboardOrderCreate(props) {
                                 onChange={(event)=>{
                                     const isExists = (cartItems = [], item = {}) => {
                                         for (let cartItem of cartItems) {
-                                            if (cartItem._id === item._id) {
+                                            if (cartItem.id === item.id) {
                                                 return cartItem;
                                             }
                                         }
@@ -268,7 +268,7 @@ export default function DashboardOrderCreate(props) {
                                             virtualCart.push({...JSON.parse(value), count: 1})
                                         } else {
                                             for (let i = 0; i < virtualCart.length; i++) {
-                                                if (virtualCart[i]._id === JSON.parse(value)._id) {
+                                                if (virtualCart[i].id === JSON.parse(value).id) {
                                                     virtualCart[i].count += 1
                                                     break
                                                 }

@@ -23,22 +23,21 @@ export default function Login(props) {
 
     const handleOnSubmit = (event) => {
         event.preventDefault(); 
-        // Axios.post('http://localhost:4000/users/login', {
-        //     loginEmail: email,
-        //     loginPassword: password
-        // })
-        // .then(res => {
-        //     setArrSuccess(["Login success!"]) 
-        //     setArrErr("");
-        //     localStorage.setItem('token', res.data.token);
-        //     localStorage.setItem('user-id', res.data.user._id);
-        //     props.history.push('/admin/dashboard')
-        // })
-        // .catch(err => {
-        //     setArrErr([err.response.data]);
-        //     setArrSuccess("") 
-        // }) 
-        props.history.push('/admin/dashboard')
+        Axios.post('http://localhost:8000/api/login/', {
+            username: email,
+            password: password
+        }) 
+        .then(res => {
+            setArrSuccess(["Login success!"]) 
+            setArrErr("");
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user-id', res.data.user._id);
+            props.history.push('/admin/dashboard')
+        })
+        .catch(err => {
+            setArrErr("Tên đăng nhập hoặc mật khẩu không chính xác");
+            setArrSuccess("") 
+        }) 
     }
 
     return (

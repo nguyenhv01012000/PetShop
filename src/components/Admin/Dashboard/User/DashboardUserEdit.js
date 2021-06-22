@@ -16,9 +16,9 @@ export default function DashboardUserCreate(props) {
 
     useEffect(()=> {
         if (user) {    
-            setUserName(user.userName)
+            setUserName(user.username)
             setUserRole(user.userRole)
-            setUserEmail(user.userEmail)
+            setUserEmail(user.email)
         }
     },[user])
 
@@ -30,13 +30,13 @@ export default function DashboardUserCreate(props) {
             }
         }
         const formData = new FormData();
-        formData.append("userName", userName);
-        formData.append("userEmail", userEmail);
-        formData.append("userPassword", userPassword);
+        formData.append("username", userName);
+        formData.append("email", userEmail);
+        formData.append("password", userPassword);
         formData.append("userRole", userRole);
         formData.append("fromAdmin", true)
 
-        axios.post(`http://localhost:4000/users/update/${user._id}`, formData, config)
+        axios.post(`http://localhost:8000/api/users/${user.id}`, formData, config)
 
         props.setCloseEditFunc(false);
         props.setToastFunc(true);
