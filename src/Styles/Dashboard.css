@@ -776,14 +776,13 @@ display: none !important;
     margin: 3px 0;
     clear: right;
     position: relative;
-    width: max-content;
+    float: left;
 }
 .box-chat-clienttext p {
     font-size: 14px;
     margin: 0;
     border-radius: 15px;
     padding: 5px 8px;
-    width: max-content;
     color: #FFF;
     background-color: #0e0e0e;
 }
@@ -799,7 +798,6 @@ display: none !important;
     border-radius: 15px;
     padding: 5px 8px;
     text-align: right;
-    width: max-content;
     background-color: #eeecec;
 }
 .time-tooltip {

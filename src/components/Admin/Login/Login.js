@@ -30,9 +30,10 @@ export default function Login(props) {
         .then(res => {
             setArrSuccess(["Login success!"]) 
             setArrErr("");
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user-id', res.data.user._id);
-            props.history.push('/admin/dashboard')
+            localStorage.setItem('token', JSON.stringify(res.data.token));
+            //localStorage.setItem('user-id', res.data.user.id);
+            props.history.push('/admin/dashboard');            
+
         })
         .catch(err => {
             setArrErr("Tên đăng nhập hoặc mật khẩu không chính xác");
@@ -55,7 +56,7 @@ export default function Login(props) {
                     { arrSuccess && <div className="login-success">{arrSuccess}</div>}
                 </div>
                 <form className="flex-col" onSubmit={handleOnSubmit}>
-                    <label>Email</label>
+                    <label>Username</label>
                     <input 
                         type="text" 
                         placeholder="Email" 

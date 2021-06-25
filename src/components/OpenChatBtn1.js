@@ -26,12 +26,20 @@ function OpenChatBtn(props) {
     const [userInfoExist, setUserInfoExist] = useState(false)
     const [room,setRoom] = useState(0)
     const [error,setError] = useState()
+    const [result,setResult] = useState()
 
     const location = props.history.location.pathname;
 
-    useEffect(() => {
-        
-        }, [])
+    useEffect(()=>{
+        if(result)
+        client.send(JSON.stringify({
+            command: "new_message",
+            from: 'admin',
+            message: result,
+            chatId: room
+        }))
+    },[result])
+
     const sendFirstChatOnSubmit = event => {
         event.preventDefault() 
 
@@ -59,8 +67,12 @@ function OpenChatBtn(props) {
                     })
                 }
                 else{
-                    setChatList(chatList=>[...chatList, dataFromServer.message])
+                    setChatList(chatList=>[...chatList, dataFromServer.message]);
+                    if (dataFromServer.message.author !== 'admin'){
+                     setResult(dataFromServer.result)
+                    }
                 }
+
                 setTimeout(()=>{
                     messageRef.current.scrollIntoView({ behavior: "smooth" })
                 }, 100)
@@ -75,7 +87,6 @@ function OpenChatBtn(props) {
     }
     const sendChatOnSubmit = (event) => {
         event.preventDefault();
-        console.log(chatList)
         client.send(JSON.stringify({
             command: "new_message",
             from: userName,
@@ -113,30 +124,6 @@ function OpenChatBtn(props) {
                 </div>
                 {(chatList.length === 0) &&
                     <div className="chat-box-body">
-                        {userInfoExist === true &&
-                            <form onSubmit={sendFirstChatOnSubmit} className={openChat ? "form-chat hide_chat_box_item" : "form-chat"}>
-                                <label>Introduce yourself *</label>
-                                <input
-                                    type="text"
-                                    onChange={(event) => {
-                                        setUserName(event.target.value)
-                                    }}
-                                    value={userName}
-                                    placeholder="Name"
-                                    className="intro" disabled></input>
-                                <input
-                                    type="email"
-                                    onChange={(event) => {
-                                        setUserEmail(event.target.value)
-                                    }}
-                                    value={userEmail}
-                                    placeholder="Email"
-                                    className="intro" disabled></input>
-                                <label>Message *</label>
-                                <textarea name="chatContent" type="textarea" onChange={handleChange} className="message" required></textarea>
-                                <button className="btn chat-box-body-btn">Chat</button>
-                            </form>
-                        }
                         {userInfoExist === false &&
                             <form onSubmit={sendFirstChatOnSubmit} className={openChat ? "form-chat hide_chat_box_item" : "form-chat"}>
                                 <label>Introduce yourself *</label>
