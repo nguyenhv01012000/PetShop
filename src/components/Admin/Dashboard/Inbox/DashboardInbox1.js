@@ -104,6 +104,7 @@ export default function DashboardInbox(props) {
 
     return (
         <div className="boxchat-admin flex">
+            {  window.innerWidth > 800 &&
             <div className="boxchat-left">
                 <div className="boxchat-search">
                     <input
@@ -155,6 +156,7 @@ export default function DashboardInbox(props) {
                     }
                 </div>
             </div>
+            }
             <div className="boxchat-main">
                 <div className="boxchat-box">
                     <div

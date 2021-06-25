@@ -37,7 +37,7 @@ function Login(props) {
         if (tab === 0) {
             Axios.post('http://localhost:8000/api/login/', {
                 username: email,
-                password: password
+                password: values.password
             }) 
             .then(res => {
                 setArrSuccess("Đăng nhập thành công!") 
@@ -58,7 +58,7 @@ function Login(props) {
             Axios.post('http://localhost:8000/api/register/', {
                 username: name,
                 email: email,
-                password: password,
+                password: values.password,
                 //userRole: "user"
             })
             .then(res => { 
