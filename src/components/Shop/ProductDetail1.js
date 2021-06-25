@@ -8,10 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faShip, faUndo, faStar } from '@fortawesome/free-solid-svg-icons'
 import { CartContext } from '../../contexts/Cart'
 import ReactStars from "react-rating-stars-component";
+import ProductDetail from './ProductDetail';
 
 
 export default function ProductDetail1(props) {  
-    console.log(props.animal)
     const ratingStar = {
         size: 20,
         edit: false,
@@ -19,52 +19,54 @@ export default function ProductDetail1(props) {
         color: "#ff4367",
         isHalf: true
     }
-    const productDog = {
-        id: 8,
-        productCate: "123",
-        productColor: null,
-        productDate: "2021-06-12T14:57:50.532417Z",
-        productDes: "nguyen",
-        productFeature: null,
-        productImg: tractivedog1,
-        productName: "Collier GPS pour chiens",
-        productPrice: 100,
-        productSale: 10,
-        productSold: 0,
-        productVote: null
-    }
-    const productCat = {
-        id: 9,
-        productCate: "123",
-        productColor: null,
-        productDate: "2021-06-12T14:57:50.532417Z",
-        productDes: "nguyen",
-        productFeature: null,
-        productImg: chats,
-        productName: "Collier GPS pour chats",
-        productPrice: 100,
-        productSale: 10,
-        productSold: 0,
-        productVote: null
-    }
+    // const productDog = {
+    //     id: 8,
+    //     productCate: "123",
+    //     productColor: null,
+    //     productDate: "2021-06-12T14:57:50.532417Z",
+    //     productDes: "nguyen",
+    //     productFeature: null,
+    //     productImg: tractivedog1,
+    //     productName: "Collier GPS pour chiens",
+    //     productPrice: 100,
+    //     productSale: 10,
+    //     productSold: 0,
+    //     productVote: null
+    // }
+    // const productCat = {
+    //     id: 9,
+    //     productCate: "123",
+    //     productColor: null,
+    //     productDate: "2021-06-12T14:57:50.532417Z",
+    //     productDes: "nguyen",
+    //     productFeature: null,
+    //     productImg: chats,
+    //     productName: "Collier GPS pour chats",
+    //     productPrice: 100,
+    //     productSale: 10,
+    //     productSold: 0,
+    //     productVote: null
+    // }
+    const product = props.productDetail
+    console.log(product)
     const {
         addToCart,
         setOpenCartBox,
         setCloseCartBox
     } = useContext(CartContext)
     const cartClick1 = () => {
-        addToCart(props.animal ==="/dog"?productDog:productCat)
+        addToCart(product)
         setOpenCartBox(true)
         setCloseCartBox(false)
     }
     return (
         <div className="ProductDetail flex">
             <div className="productdetail-image-box">
-                <img src={props.animal === "/dog"?tractivedog:chats}></img>
+                <img src={product.productImg}></img>
             </div>
             <div className="productdetail-info">
-                <h1>Collier GPS pour chiens</h1>
-                <h3 style={{fontWeight:"300"}}>Tractive GPS DOG 4</h3>
+                <h1>{product.productName}</h1>
+                <h3 style={{fontWeight:"300"}}>{product.productCate}</h3>
                 <div className="flex" style={{alignItems: "center"}}>
                     <ReactStars {...ratingStar} />
                     <p style={{marginLeft:"10px", fontSize:"12px", fontWeight:"600",cursor:"pointer"}}>4496 évaluations</p>
@@ -78,7 +80,7 @@ export default function ProductDetail1(props) {
                     <li>Autonomie de la batterie jusqu'à 5 jours</li>
                     <li>Choisissez un abonnement à partir de € 4.17 par mois après l'achat</li>
                 </ul>
-                <p style={{fontSize:"15px"}}>Découvrez notre dernier traceur GPS pour chiens, un dispositif encore plus précis et avec une meilleure autonomie. Il réunit les nouvelles technologies et nos fonctions les plus appréciées pour une plus grande tranquillité d'esprit. Avec sa portée illimitée, il vous permet de voir la localisation de votre chien et son niveau d'activité presque partout dans le monde.</p>
+                <p style={{fontSize:"15px"}}>{product.productDes}</p>
             </div>
             <div className="productdetail-addtocart flex-col">
                 <ul className="productdetail-flag-info">
@@ -89,7 +91,7 @@ export default function ProductDetail1(props) {
                     </ul>
                     <div className="triangle"></div>
                 </ul>
-                <p className="productdetail-price">100đ</p>
+                <p className="productdetail-price">{product.productPrice}</p>
                 <div 
                     className="productdetail-addtocart-btn"
                     onClick={cartClick1}

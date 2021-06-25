@@ -46,7 +46,7 @@ export default function DashboardBody(props) {
 
     useEffect(()=> {
         console.log(props.productId)
-        Axios.get(`http://localhost:4000/products/${props.productId}`)
+        Axios.get(`http://localhost:8000/api/product/${props.productId}`)
             .then(res => {
                 setProduct(res.data)
             } 

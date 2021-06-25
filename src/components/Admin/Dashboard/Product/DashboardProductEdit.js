@@ -82,12 +82,12 @@ export default function DashboardProductEdit(props) {
             setProductSex(product.productSex)
             setProductSize(product.productSize)
             setProductGroupCate(product.productGroupCate)
-            axios.get(`http://localhost:8000/category`)
+            axios.get(`http://localhost:8000/api/category`)
                 .then(res => {
                     setCate(res.data)
                 }
             )
-            axios.get(`http://localhost:4000/products`)
+            axios.get(`http://localhost:8000/api/product`)
                 .then(res => {
                     const test = Object.values(res.data.reduce((a, {productGroupCate}) => {
                         a[productGroupCate] = a[productGroupCate] || {productGroupCate};
@@ -130,13 +130,13 @@ export default function DashboardProductEdit(props) {
         formData.append("productDes", productDes);
         formData.append("productSex", productSex);
         formData.append("productDate", new Date());
-        axios.post(`http://localhost:4000/products/update/${product._id}`, formData, config)
+        axios.put(`http://localhost:8000/api/product/${product.id}`, formData, config)
         props.setCloseEditFunc(false);
         props.setToastFunc(true);
     }
 
     const addNewCate = () => {
-        axios.post('http://localhost:4000/category', {
+        axios.post('http://localhost:8000/api/category', {
             cateName: inputValue.cate
         })
         setCate(cate=>[...cate, {cateName: inputValue.cate}])
@@ -159,7 +159,7 @@ export default function DashboardProductEdit(props) {
         const items = [...productImg]
         items.splice(id, 1)
         setProductImg(items)
-        axios.post(`http://localhost:4000/products/update/${product._id}`, {
+        axios.post(`http://localhost:4000/api/products${product.id}`, {
             deleteImgId: id
         })
     }
@@ -215,23 +215,23 @@ export default function DashboardProductEdit(props) {
                                     style={{height: '50px'}}
                                 ></input>
                                 <div className="flex" style={{ overflowY: 'hidden', flexWrap:'wrap'}}>
-                                    { productImg && 
-                                        productImg.map((item, index) => {
-                                            return (
-                                                <div className="create-box-img">
-                                                    <img key={index} src={item} alt=""></img>
-                                                    <div 
-                                                        className="create-box-img-overlay"
-                                                    >
-                                                        <p
-                                                            id={index}
-                                                            onClick={deleteImg}
-                                                            className="icon">X
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
+                                    { productImg &&  <div className="create-box-img"> <img  src={productImg} alt=""></img></div>
+                                        // productImg.map((item, index) => {
+                                        //     return (
+                                        //         <div className="create-box-img">
+                                        //             <img key={index} src={item} alt=""></img>
+                                        //             <div 
+                                        //                 className="create-box-img-overlay"
+                                        //             >
+                                        //                 <p
+                                        //                     id={index}
+                                        //                     onClick={deleteImg}
+                                        //                     className="icon">X
+                                        //                 </p>
+                                        //             </div>
+                                        //         </div>
+                                        //     )
+                                        // })
                                     }
                                 </div>
                             </div>

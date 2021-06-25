@@ -16,9 +16,9 @@ function ProductForDog(props) {
 
     const [product, setProduct] = useState(null)
     const [news, setNews] = useState([])
-
+    const [products, setProducts] = useState([])
     useEffect(()=>{
-        axios.get(`http://localhost:4000/api/product`)
+        axios.get(`http://localhost:8000/api/product`)
             .then(res => {
                 for(let i in res.data) { 
                     if (res.data[i].productCate !== props.location.pathname.substr(1)) {
@@ -26,14 +26,19 @@ function ProductForDog(props) {
                     }
                 }
             })
-        axios.get(`http://localhost:4000/news`)
+        axios.get(`http://localhost:8000/api/news`)
             .then(res => { 
                 setNews(res.data) 
             })
         window.scrollTo(0,0)
         console.log(product)
     }, [props.location.pathname]) 
-    
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/product`)
+        .then(res => {
+            setProducts(res.data)
+        })
+    },[])
     const handleClick = () => {
         smoothScroll.scrollTo('review'); 
     }
@@ -110,15 +115,18 @@ function ProductForDog(props) {
             this.timer = setTimeout(step, 10);
         }
     };
-
+  
     return (
         <div className="ProductForDog">
             <Header/>
-            
+            {products.map((item) => {
+                return(
                 <ProductDetail1
                 animal={props.location.pathname}
-                />
-            
+                productDetail={item}
+                /> 
+                )           
+            })}
             <ShopFeatures/>
             <ProductAsk/>
             { product &&

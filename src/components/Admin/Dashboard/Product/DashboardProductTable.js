@@ -103,11 +103,11 @@ export default function DashboardProductTable(props) {
     }
 
     const deleteOnClick = (event) => {
-        axios.post(`http://localhost:4000/products/delete/:${event.target.id}`, {
+        axios.delete(`http://localhost:8000/api/product/${event.target.id}`, {
             productId: event.target.id
         })
         setProducts(products.filter((item)=>{
-            return item._id !== event.target.id
+            return item.id != event.target.id
         }))
     }
 
@@ -337,14 +337,14 @@ export default function DashboardProductTable(props) {
                                                     <div 
                                                         className="action-item flex-center action-green"
                                                         onClick={props.setOpenEditFunc}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faPencilAlt}/>
                                                     </div>
                                                     <div 
                                                         className="action-item flex-center action-red"
                                                         onClick={deleteOnClick}
-                                                        id={item._id}
+                                                        id={item.id}
                                                         >
                                                         <FontAwesomeIcon style={{pointerEvents: 'none'}} icon={faTimes}/>
                                                     </div>
