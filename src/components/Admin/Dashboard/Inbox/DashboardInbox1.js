@@ -6,6 +6,9 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { ToggleSwitch } from 'react-dragswitch'
+import 'react-dragswitch/dist/index.css'
+import chatbot from '../../../../assets/chatbot.jpg';
 
 var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/33/')
 
@@ -101,13 +104,22 @@ export default function DashboardInbox(props) {
 
     const [openTimeTooltip, setOpenTimeTooltip] = useState("")
 
-
+    const [checked, setChecked] = useState(false)
     return (
         <div className="boxchat-admin flex">
-            {  window.innerWidth > 800 &&
-            <div className="boxchat-left">
-                <div className="boxchat-search">
-                    <input
+            {window.innerWidth > 800 &&
+                <div className="boxchat-left">
+                        <label style={{display:"flex", justifyContent:"space-between"}}                        >
+                            <img src={chatbot} style={{width:"80px", height:"80px"}}></img>
+                            <span style={{marginTop:"30px", paddingRight:"40px"}}>
+                                <ToggleSwitch checked={checked} onChange={(e) => {
+                                    setChecked(e) 
+                                    
+                                }} />
+                            </span>
+                             
+                        </label><hr/>
+                        {/* <input
                         type="text"
                         placeholder="Search"
                         value={searchInput}
@@ -115,47 +127,46 @@ export default function DashboardInbox(props) {
                             setSearchInput(event.target.value)
                             filterOnSearch(event.target.value)
                         }}
-                    ></input>
-                </div>
-                <div className="boxchat-list">
-                    {room.length > 0 &&
-                        room.map((item, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className={roomIndex === item.id ? "boxchat-item flex boxchat-item-active" : "boxchat-item flex"}
-                                    onClick={() => {
-                                        setRoomIndex(item.id)
-                                    }}
-                                >
-                                    <div className="boxchat-avt flex-center" style={{ pointerEvents: 'none' }}>
-                                        {item.userInfo &&
-                                            <img
-                                                src={item.userInfo.userAvt}
-                                                alt=""
-                                            ></img>
-                                        }
-                                        {!item.userInfo &&
-                                            <img
-                                                src="https://icon-library.com/images/avatar-icon-png/avatar-icon-png-8.jpg"
-                                                alt=""
-                                            ></img>
-                                        }
-                                    </div>
-                                    <div className="flex-col" style={{ pointerEvents: 'none', width: '100%', justifyContent: 'space-between' }}>
-                                        <p className="boxchat-name">Room Chat : {item.id}</p>
-                                        <div className="boxchat-first flex">
+                    ></input> */}
+                    <div className="boxchat-list">
+                        {room.length > 0 &&
+                            room.map((item, index) => {
+                                return (
+                                    <div
+                                        key={index}
+                                        className={roomIndex === item.id ? "boxchat-item flex boxchat-item-active" : "boxchat-item flex"}
+                                        onClick={() => {
+                                            setRoomIndex(item.id)
+                                        }}
+                                    >
+                                        <div className="boxchat-avt flex-center" style={{ pointerEvents: 'none' }}>
+                                            {item.userInfo &&
+                                                <img
+                                                    src={item.userInfo.userAvt}
+                                                    alt=""
+                                                ></img>
+                                            }
+                                            {!item.userInfo &&
+                                                <img
+                                                    src="https://icon-library.com/images/avatar-icon-png/avatar-icon-png-8.jpg"
+                                                    alt=""
+                                                ></img>
+                                            }
+                                        </div>
+                                        <div className="flex-col" style={{ pointerEvents: 'none', width: '100%', justifyContent: 'space-between' }}>
+                                            <p className="boxchat-name">Room Chat : {item.id}</p>
+                                            <div className="boxchat-first flex">
 
-                                            Messages : {item.messages.length}
+                                                Messages : {item.messages.length}
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
+                    </div>
                 </div>
-            </div>
             }
             <div className="boxchat-main">
                 <div className="boxchat-box">

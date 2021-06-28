@@ -9816,6 +9816,11 @@ react-draft-wysiwyg@^1.14.5:
     linkify-it "^2.2.0"
     prop-types "^15.7.2"
 
+react-dragswitch@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-dragswitch/-/react-dragswitch-1.0.1.tgz#dbf5a128a39f833490fd8620cdade4e2d386762e"
+  integrity sha512-E8vskrjdLKpUPGkK7EuiJQ4qLhZ0yh6dUJBYSTjHbss+wj8IdlDZhHP2o6ZmzfUtuKwHh8Bq6t6QuS4yLMf5pQ==
+
 react-error-overlay@^6.0.9:
   version "6.0.9"
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.9.tgz"
