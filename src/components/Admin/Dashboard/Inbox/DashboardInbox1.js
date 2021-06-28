@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import '../../../../App.css'
 import '../../../../Styles/Dashboard.css'
 import { useEffect, useState } from 'react'
@@ -9,6 +9,7 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { ToggleSwitch } from 'react-dragswitch'
 import 'react-dragswitch/dist/index.css'
 import chatbot from '../../../../assets/chatbot.jpg';
+import { CartContext } from '../../../../contexts/Cart'
 
 var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/test/')
 
@@ -105,6 +106,8 @@ export default function DashboardInbox(props) {
     const [openTimeTooltip, setOpenTimeTooltip] = useState("")
 
     const [checked, setChecked] = useState(false)
+    const {chatBot ,setChatBot}= useContext(CartContext)
+
     return (
         <div className="boxchat-admin flex">
             {window.innerWidth > 800 &&
@@ -114,7 +117,7 @@ export default function DashboardInbox(props) {
                             <span style={{marginTop:"30px", paddingRight:"40px"}}>
                                 <ToggleSwitch checked={checked} onChange={(e) => {
                                     setChecked(e) 
-                                    
+                                    setChatBot(e)
                                 }} />
                             </span>
                              

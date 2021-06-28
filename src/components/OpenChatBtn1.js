@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { UserContext } from '../contexts/User';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { CartContext } from '../../src/contexts/Cart'
 
 var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/test/');
 
@@ -95,7 +96,8 @@ function OpenChatBtn(props) {
         }));
         inputRef.current.value = ""
     }
-
+    const {chatBot, setChatBot} = useContext(CartContext)
+    console.log(chatBot)
     return (
         <div
             className={location === "/checkout" || location === "/admin" || location === "/admin/dashboard" ? "chat-btn displayNone" : "chat-btn"}

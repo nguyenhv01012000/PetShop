@@ -11,6 +11,7 @@ export function CartProvider(props) {
     const [totalCount, setTotalCount] = useState(0)
     const [openCartBox, setOpenCartBox] = useState(false)
     const [closeCartBox, setCloseCartBox] = useState(false)
+    const [chatBot, setChatBot] = useState(false)
     // const [room, setRoom] = useState()
     // const client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${room}/`);
     // useEffect(()=>{
@@ -160,10 +161,13 @@ export function CartProvider(props) {
         localStorage.setItem('totalCount', JSON.stringify(virtualTotal))
         setTotalCount(virtualTotal)
     }
+     
     return (
         <CartContext.Provider
             value={{
                 cartItems: cartItems,
+                chatBot:chatBot,
+                setChatBot:setChatBot,
                 addToCart: addToCart, 
                 clickedCart: clickedCart,
                 removeFromCart: removeFromCart,
