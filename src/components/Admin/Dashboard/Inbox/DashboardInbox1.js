@@ -10,7 +10,7 @@ import { ToggleSwitch } from 'react-dragswitch'
 import 'react-dragswitch/dist/index.css'
 import chatbot from '../../../../assets/chatbot.jpg';
 
-var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/33/')
+var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/test/')
 
 
 export default function DashboardInbox(props) {

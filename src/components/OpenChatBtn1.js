@@ -9,7 +9,7 @@ import axios from 'axios'
 import { UserContext } from '../contexts/User';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
-var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/0/');
+var client = new W3CWebSocket('ws://127.0.0.1:8000/ws/chat/test/');
 
 function OpenChatBtn(props) {
     const messageRef = useRef();
