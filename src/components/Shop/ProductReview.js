@@ -9,6 +9,7 @@ export default function ProductReview(props) {
 
     const [reviewStar, setReviewStar] = useState(0)
     const [reviewName, setReviewName] = useState("")
+    const [reviewEmail, setReviewEmail] = useState("")
     const [reviewContent, setReviewContent] = useState("")
     const [productVote, setProductVote] = useState([])
     const [product, setProduct] = useState(null)
@@ -50,7 +51,7 @@ export default function ProductReview(props) {
                 ratingStart: reviewStar,
                 ratingAvt: userInfo.userAvt
             }
-            axios.post(`http://localhost:4000/products/review/${product._id}`, data)
+            axios.post(`http://127.0.0.1:8000/reviews/`, data)
             .then((res)=>{
                 console.log(res)
                 setProductVote(productVote=>[data, ...productVote])
@@ -59,17 +60,20 @@ export default function ProductReview(props) {
             })
         } else {
             const data = {
-                ratingName: reviewName,
-                ratingDate: new Date().toString(),
-                ratingContent: reviewContent, 
+                name: reviewName,
+                email:reviewEmail,
+                review: reviewContent, 
                 ratingStart: reviewStar, 
-                ratingAvt: "https://icon-library.com/images/avatar-icon-png/avatar-icon-png-8.jpg"
+                ratingContent: reviewContent,
+                ratingDate: new Date().toString(),
             }
-            axios.post(`http://localhost:4000/products/review/${product._id}`, data)
+            axios.post(`http://127.0.0.1:8000/reviews/`, data)
             .then((res)=>{ 
                 setProductVote(productVote=>[data, ...productVote])
                 setReviewName("")
+                setReviewEmail("")
                 setReviewContent("") 
+                alert(res.data)
             })
         }
     }  
@@ -146,6 +150,13 @@ export default function ProductReview(props) {
                                 value={reviewName}
                                 onChange={(event)=>{
                                     setReviewName(event.target.value)
+                                }}
+                            ></input>
+                            <label>Email</label>
+                            <input 
+                                value={reviewEmail}
+                                onChange={(event)=>{
+                                    setReviewEmail(event.target.value)
                                 }}
                             ></input>
                             <label>Nội dung</label>

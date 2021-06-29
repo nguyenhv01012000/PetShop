@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 function Login(props) {
     const { t, i18n } = useTranslation();
-    i18n.changeLanguage('English');
+    i18n.changeLanguage('ViệtNam');
     const { 
         setUserInfoFunc 
     } = useContext(UserContext);
