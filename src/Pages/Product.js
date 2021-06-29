@@ -2,7 +2,7 @@ import '../App.css';
 import Header from '../components/Home/Header'; 
 import Newsletter from '../components/Home/Newsletter';
 import Footer from '../components/Home/Footer'; 
-import ProductDetail1 from '../components/Shop/ProductDetail1';
+import ProductDetail from '../components/Shop/ProductDetail';
 import ShopFeatures from '../components/Shop/ShopFeatures';
 import ProductAsk from '../components/Shop/ProductAsk';
 // import ProductRecommend from '../components/Shop/ProductRecommend';
@@ -121,7 +121,7 @@ function ProductForDog(props) {
             <Header/>
             {products.map((item) => {
                 return(
-                <ProductDetail1
+                <ProductDetail
                 animal={props.location.pathname}
                 productDetail={item}
                 /> 

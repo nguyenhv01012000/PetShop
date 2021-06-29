@@ -14,7 +14,7 @@ import {
 import Toast from './components/Toast';
 import { CartProvider } from './contexts/Cart';
 import { UserProvider } from './contexts/User';
-import OpenChatBtn from './components/OpenChatBtn1';
+import OpenChatBtn from './components/OpenChatBtn';
 import Account from './components/Account/Account';
 import './i18n';
 //123

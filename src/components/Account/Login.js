@@ -11,8 +11,10 @@ function Login(props) {
     const { t, i18n } = useTranslation();
     const { 
         textLanguge
-    } = useContext(CartContext);    
-    i18n.changeLanguage(textLanguge);
+    } = useContext(CartContext);
+    useEffect(()=>{
+        i18n.changeLanguage(textLanguge);
+    },[textLanguge])    
 
     const [tab, setTab] = useState(0)
     const [email, setEmail] = useState("") 

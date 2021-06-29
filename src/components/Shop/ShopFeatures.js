@@ -54,10 +54,10 @@ function ShopFeatures(props) {
             </div>
             }
             { props.location.pathname === '/cat' &&
-                <div className="Features">
+                <div className="Features">  
                 <Feature
                     reverse={true}
-                    img={"http://pe.heromc.net:4000/images/f3447388493277f92f3351352814f070"}
+                    img={"https://tractive.com/static/images/sections/tractive-ikati-luna-live-tracking-1280.jpg.webp"}
                     color={"linear-gradient(to right, #00a5e1, rgba(0,127,200,0.5)),linear-gradient(#007fc8, #007fc8)"}
                 >
                     <div className="feature-intro flex">
@@ -77,7 +77,7 @@ function ShopFeatures(props) {
                 </Feature>
                 <Feature
                     reverse={false}
-                    img={"http://pe.heromc.net:4000/images/dd9d8dd2710275aeb19125efd3c15e5a"}
+                    img={"https://tractive.com/static/images/sections/tractive-ikati-with-collar-lucy-activity-monitoring-1280.jpg.webp"}
                     color={"#f5f6f8"}
                 >
                     <div className="feature-intro flex">

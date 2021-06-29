@@ -4,7 +4,7 @@ import '../../../Styles/Dashboard.css'
 import DashboardHeader from './DashboardHeader'
 import DashboardMain from './Main/DashboardMain';
 import classNames from 'classnames'
-import DashboardInbox from './Inbox/DashboardInbox1';
+import DashboardInbox from './Inbox/DashboardInbox';
 import DashboardProduct from './Product/DashboardProduct';
 import DashboardNews from './News/DashboardNews';
 import DashboardProductEdit from './Product/DashboardProductEdit';

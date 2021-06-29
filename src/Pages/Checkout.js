@@ -226,7 +226,7 @@ function Checkout(props) {
                                         }}
                                     ></input>
                                 </div>
-                                <div className="checkout-info-row">
+                                {/* <div className="checkout-info-row">
                                     <div className="checkout-info-left">Tỉnh</div> 
                                     <select 
                                         className="input"
@@ -269,7 +269,7 @@ function Checkout(props) {
                                             return null
                                         })}
                                     </select> 
-                                </div>
+                                </div> */}
                                 <div className="checkout-info-row">
                                     <div className="checkout-info-left">Địa chỉ</div>
                                     <input 
