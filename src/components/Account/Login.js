@@ -2,18 +2,18 @@ import Axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
 import '../../App.css'
-import { UserContext } from '../../contexts/User';
+import { CartContext } from '../../contexts/Cart';
 import '../../Styles/Login.css'
 import { EyeOff, Eye} from 'react-feather'
 import { useTranslation } from 'react-i18next';
 
 function Login(props) {
     const { t, i18n } = useTranslation();
-    i18n.changeLanguage('English');
     const { 
-        setUserInfoFunc 
-    } = useContext(UserContext);
-
+        textLanguge
+    } = useContext(CartContext);    
+    i18n.changeLanguage(textLanguge);
+    
     const [tab, setTab] = useState(0)
     const [email, setEmail] = useState("") 
     const [name, setName] = useState("")
@@ -88,26 +88,26 @@ function Login(props) {
     return (
         <div className="login flex-col">
             <div className="login-title">
-                <strong>{t('title1')}</strong> cho chó và mèo
+                <strong>{t('title1')}</strong> {t('title2')}
             </div>
             <div className="login-banner"> 
             </div>
             { tab === 0 &&
                 <div className="login-box flex-col">
-                    <div className="login-box-title"><strong>Đăng</strong> nhập</div>
+                    <div className="login-box-title"><strong>{t('signin')}</strong></div>
                     <div className="login-status">
                         { arrErr && <div className="login-err">{arrErr}</div>}
                         { arrSuccess && <div className="login-success">{arrSuccess}</div>}
                     </div>
                     <form className="flex-col" onSubmit={sendAccount}>
-                        <label>Tên Đăng Nhập</label>
+                        <label>{t('username')}</label>
                         <input
                             value={email}
                             onChange={(event)=>{
                                 setEmail(event.target.value)
                             }}
                         ></input>
-                        <label>Mật khẩu</label>
+                        <label>{t('password')}</label>
                         <div className="input-password">
                             <input
                                 type={isRevealPwd ? "text" : "password"}                      
@@ -117,35 +117,35 @@ function Login(props) {
                             <span  onClick={() => setIsRevealPwd(!isRevealPwd)}>{isRevealPwd ?<Eye size={15}/> :<EyeOff size={15}/> }</span>
                         </div>
 
-                        <button>Đăng nhập</button>
+                        <button>{t('signin')}</button>
                     </form>
-                    <div className="login-forgot">Quên mật khẩu?</div>
-                    <div className="login-register" onClick={()=>{setTab(1)}}>Tạo tài khoản mới</div>
+                    <div className="login-forgot">{t('forgotPassword')}</div>
+                    <div className="login-register" onClick={()=>{setTab(1)}}>{t('createAccount')}</div>
                 </div>
             }
             { tab === 1 &&
                 <div className="login-box flex-col">
-                    <div className="login-box-title"><strong>Tạo</strong> tài khoản</div>
+                    <div className="login-box-title"><strong>{t('signup')}</strong></div>
                     <div className="login-status">
                         { arrErr && <div className="login-err">{arrErr}</div>}
                         { arrSuccess && <div className="login-success">{arrSuccess}</div>}
                     </div>
                     <form className="flex-col" onSubmit={sendAccount}>
-                        <label>Tên *</label>
+                        <label>{t('username')}*</label>
                         <input
                             value={name}
                             onChange={(event)=>{
                                 setName(event.target.value)
                             }}
                         ></input>
-                        <label>Email *</label>
+                        <label>{t('signin')}*</label>
                         <input
                             value={email}
                             onChange={(event)=>{
                                 setEmail(event.target.value)
                             }}
                         ></input>
-                        <label>Mật khẩu *</label>
+                        <label>{t('forgotPassword')} *</label>
                         <div className="input-password">
                             <input
                                 type={isRevealPwd ? "text" : "password"}                      
@@ -154,9 +154,9 @@ function Login(props) {
                             />
                             <span  onClick={() => setIsRevealPwd(!isRevealPwd)}>{isRevealPwd ?<Eye size={15}/> :<EyeOff size={15}/> }</span>
                         </div>
-                        <button>Tạo tài khoản</button>
+                        <button>{t('createAccount')}</button>
                     </form> 
-                    <div className="login-register" onClick={()=>{setTab(0)}}>Đã có tài khoản?</div>
+                    <div className="login-register" onClick={()=>{setTab(0)}}>{t('hasAccount')}</div>
                 </div>
             }
         </div>

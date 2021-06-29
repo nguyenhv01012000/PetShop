@@ -19,7 +19,7 @@ export function CartProvider(props) {
     //         console.log('WebSocket Client Connected');
     //     };
     // },[room])
-
+    const [textLanguge, setTextLanguage] = useState(localStorage.getItem('language')) 
     const isExists = (cartItems = [], item = {}) => {
         for (let cartItem of cartItems) {
             if (cartItem.id === item.id) {
@@ -180,6 +180,8 @@ export function CartProvider(props) {
                 setOpenCartBox: setOpenCartBox,
                 closeCartBox: closeCartBox,
                 setCloseCartBox: setCloseCartBox,
+                textLanguge:textLanguge,
+                setTextLanguage:setTextLanguage
                 // setRoom : setRoom
             }}
         >

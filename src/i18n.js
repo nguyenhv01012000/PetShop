@@ -8,40 +8,43 @@ const resources = {
   English: {
     translation: {
       "title1": "Locator for",
-      "title2": "cho chó và mèo",
-      "signin": "Đăng nhập",
-      "signup": "Tạo tài khoản",
-      "username":"Tên Đăng Nhập",
-      "password":"Mật khẩu",
+      "title2": "for dogs and cats",
+      "signin": "Login",
+      "signup": "Create Account",
+      "username":"User name",
+      "password":"password",
       "email" : "Email",
-      "forgotPassword": "Quên Mật Khẩu",
-      "createAccount" : "Tạo Tài Khoản Mới",
+      "forgotPassword": "Forgot password",
+      "createAccount" : "Create New Account",
+      "hasAccount" : "Already have an account"
     }
   },
   Español: {
     translation: {
-      "title1": "Thiết bị định vị",
-      "title2": "cho chó và mèo",
-      "signin": "Đăng nhập",
-      "signup": "Tạo tài khoản",
-      "username":"Tên Đăng Nhập",
-      "password":"Mật khẩu",
+      "title1": "Dispositivos de posicionamiento",
+      "title2": "para perros y gatos",
+      "signin": "Iniciar sesión",
+      "signup": "Crear una cuenta",
+      "username":"Nombre de usuario",
+      "password":"contraseña",
       "email" : "Email",
-      "forgotPassword": "Quên Mật Khẩu",
-      "createAccount" : "Tạo Tài Khoản Mới",
+      "forgotPassword": "Se te olvidó tu contraseña",
+      "createAccount" : "crear una nueva cuenta",
+      "hasAccount" : "Ya tienes una cuenta"
     }
   },
   Français: {
     translation: {
-      "title1": "Thiết bị định vị",
-      "title2": "cho chó và mèo",
-      "signin": "Đăng nhập",
-      "signup": "Tạo tài khoản",
-      "username":"Tên Đăng Nhập",
-      "password":"Mật khẩu",
+      "title1": "Dispositifs de positionnement",
+      "title2": "pour chiens et chats",
+      "signin": "Connexion",
+      "signup": "Créer un compte",
+      "username":"Nom d'utilisateur",
+      "password":"le mot de passe",
       "email" : "Email",
-      "forgotPassword": "Quên Mật Khẩu",
-      "createAccount" : "Tạo Tài Khoản Mới",
+      "forgotPassword": "Mot de passe oublié",
+      "createAccount" : "Créer un nouveau compte",
+      "hasAccount" : "Vous avez déjà un compte"
     }
   },
   ViệtNam: {
@@ -55,6 +58,7 @@ const resources = {
       "email" : "Email",
       "forgotPassword": "Quên Mật Khẩu",
       "createAccount" : "Tạo Tài Khoản Mới",
+      "hasAccount" : "Đã có tài khoản"
     }
   }
 };

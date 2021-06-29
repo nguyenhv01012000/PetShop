@@ -30,7 +30,9 @@ function Header(props) {
         setCloseCartBox,
         minusCount, 
         plusCount,
-        removeFromCart
+        removeFromCart,
+        textLanguage,
+        setTextLanguage
     } = useContext(CartContext);
     const[openLaguageBox, setOpenLaguageBox] = useState(false)
     useEffect(()=> {
@@ -67,7 +69,7 @@ function Header(props) {
         }
     }
     const address = props.location.pathname;
-    const language = ["English", "Español", "Français","ViệtNam"]
+    const language = ["English", "Español", "Français","ViệtNam"]   
     const [changeText, setChangeText] = useState(localStorage.getItem('language'))
     useEffect(()=>{
         localStorage.setItem('language', changeText)
@@ -270,6 +272,7 @@ function Header(props) {
                             onClick={()=> {
                                 setChangeText(item)
                                 setOpenLaguageBox(false)
+                                setTextLanguage(item)
                             }}
                           >{item}</li>
                        }                       
