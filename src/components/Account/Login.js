@@ -5,9 +5,11 @@ import '../../App.css'
 import { UserContext } from '../../contexts/User';
 import '../../Styles/Login.css'
 import { EyeOff, Eye} from 'react-feather'
+import { useTranslation } from 'react-i18next';
 
 function Login(props) {
-
+    const { t, i18n } = useTranslation();
+    i18n.changeLanguage('English');
     const { 
         setUserInfoFunc 
     } = useContext(UserContext);
@@ -86,7 +88,7 @@ function Login(props) {
     return (
         <div className="login flex-col">
             <div className="login-title">
-                <strong>Thiết bị định vị</strong> cho chó và mèo
+                <strong>{t('title1')}</strong> cho chó và mèo
             </div>
             <div className="login-banner"> 
             </div>

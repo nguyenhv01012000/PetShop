@@ -67,7 +67,7 @@ function Header(props) {
         }
     }
     const address = props.location.pathname;
-    const language = [" English (US) ", " English (GB) ", " Deutsch ", " Español ", " Français ", " Italiano ", " български ", " Česky ", " Nederlands ", " Svenska ", " Dansk ", " Polski ", " Русский "]
+    const language = ["English", "Español", "Français","ViệtNam"]
     const [changeText, setChangeText] = useState(localStorage.getItem('language'))
     useEffect(()=>{
         localStorage.setItem('language', changeText)

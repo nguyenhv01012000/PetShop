@@ -28,18 +28,10 @@ function OpenChatBtn(props) {
     const [room,setRoom] = useState(0)
     const [error,setError] = useState()
     const [result,setResult] = useState()
+    const chatBot = localStorage.getItem('chatBox')
+    console.log(chatBot)
 
     const location = props.history.location.pathname;
-
-    useEffect(()=>{
-        if(result)
-        client.send(JSON.stringify({
-            command: "new_message",
-            from: 'admin',
-            message: result,
-            chatId: room
-        }))
-    },[result])
 
     const sendFirstChatOnSubmit = event => {
         event.preventDefault() 
@@ -57,6 +49,14 @@ function OpenChatBtn(props) {
                     message: inputValue.chatContent,
                     chatId: res.data.id
                 }))
+                if(chatBot=="true"){
+                    client.send(JSON.stringify({
+                        command: "new_message",
+                        from: 'chatbot',
+                        message: inputValue.chatContent,
+                        chatId: res.data.id
+                    }));
+                }
                 setRoom(res.data.id)
             }
             client.onmessage = (message) => {
@@ -69,11 +69,7 @@ function OpenChatBtn(props) {
                 }
                 else{
                     setChatList(chatList=>[...chatList, dataFromServer.message]);
-                    if (dataFromServer.message.author !== 'admin'){
-                     setResult(dataFromServer.result)
-                    }
                 }
-
                 setTimeout(()=>{
                     messageRef.current.scrollIntoView({ behavior: "smooth" })
                 }, 100)
@@ -94,10 +90,17 @@ function OpenChatBtn(props) {
             message: inputValue.messageSend,
             chatId: room
         }));
+        if(chatBot=="true"){
+            client.send(JSON.stringify({
+                command: "new_message",
+                from: 'chatbot',
+                message: inputValue.messageSend,
+                chatId: room
+            }));
+        }
         inputRef.current.value = ""
     }
-    const {chatBot, setChatBot} = useContext(CartContext)
-    console.log(chatBot)
+    
     return (
         <div
             className={location === "/checkout" || location === "/admin" || location === "/admin/dashboard" ? "chat-btn displayNone" : "chat-btn"}

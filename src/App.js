@@ -16,6 +16,7 @@ import { CartProvider } from './contexts/Cart';
 import { UserProvider } from './contexts/User';
 import OpenChatBtn from './components/OpenChatBtn1';
 import Account from './components/Account/Account';
+import './i18n';
 //123
 function App(props) { 
   

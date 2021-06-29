@@ -4,11 +4,10 @@ import Login from '../components/Account/Login'
 import { useEffect } from 'react';
 
 function Home() {
-
   useEffect(()=>{
     window.scrollTo(0,0)
   })
-
+  
   return (
     <div className="Home">
       <Header/>

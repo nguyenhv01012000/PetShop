@@ -99,25 +99,27 @@ export default function DashboardInbox(props) {
             }
         }
         setAllChatData(search)
-    }
+    } 
 
     const sortDateChat = [...allChatData]
 
     const [openTimeTooltip, setOpenTimeTooltip] = useState("")
 
-    const [checked, setChecked] = useState(false)
-    const {chatBot ,setChatBot}= useContext(CartContext)
+    const [checked, setChecked] = useState(localStorage.getItem('chatBox')=="true"?true:false)
+    console.log(checked)
+    useEffect(()=>{
+        localStorage.setItem('chatBox',checked)
+    },[checked])
 
     return (
         <div className="boxchat-admin flex">
-            {window.innerWidth > 800 &&
+            {
                 <div className="boxchat-left">
                         <label style={{display:"flex", justifyContent:"space-between"}}                        >
                             <img src={chatbot} style={{width:"80px", height:"80px"}}></img>
                             <span style={{marginTop:"30px", paddingRight:"40px"}}>
                                 <ToggleSwitch checked={checked} onChange={(e) => {
                                     setChecked(e) 
-                                    setChatBot(e)
                                 }} />
                             </span>
                              
