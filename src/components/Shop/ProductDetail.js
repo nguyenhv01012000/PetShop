@@ -72,22 +72,22 @@ export default function ProductDetail1(props) {
                     <p style={{marginLeft:"10px", fontSize:"12px", fontWeight:"600",cursor:"pointer"}}>4496 évaluations</p>
                 </div>
                 <ul>
-                    <li>Localisation GPS mondiale avec suivi d'activité</li>
-                    <li>Mode LIVE - localisation mise à jour toutes les 2 à 3 secondes</li>
-                    <li>Vous recevrez une notification si votre chien se promène un peu trop loin de chez vous</li>
-                    <li>Bénéficiez de la meilleure expérience de suivi avec la dernière technologie</li>
-                    <li>100 % étanche et résistant à toutes vos aventures</li>
-                    <li>Autonomie de la batterie jusqu'à 5 jours</li>
-                    <li>Choisissez un abonnement à partir de € 4.17 par mois après l'achat</li>
+                     <li> Vị trí GPS toàn cầu với theo dõi hoạt động </li>
+                     <li> Chế độ TRỰC TIẾP - vị trí được cập nhật cứ sau 2 đến 3 giây </li>
+                     <li> Bạn sẽ nhận được thông báo nếu con chó của bạn đi bộ hơi xa nhà bạn </li>
+                     <li> Có được trải nghiệm theo dõi tốt nhất với công nghệ mới nhất </li>
+                     <li> Không thấm nước 100% và có khả năng chống chọi với mọi cuộc phiêu lưu của bạn </li>
+                     <li> Thời lượng pin lên đến 5 ngày </li>
+                     <li> Chọn đăng ký từ € 4,17 mỗi tháng sau khi mua hàng </li>
                 </ul>
                 <p style={{fontSize:"15px"}}>{product.productDes}</p>
             </div>
             <div className="productdetail-addtocart flex-col">
                 <ul className="productdetail-flag-info">
                     <ul className="productdetail-flag-info-list">
-                        <li><FontAwesomeIcon icon={faCheckCircle} className="icon"/>Emballage sans plastique</li>
-                        <li><FontAwesomeIcon icon={faShip} className="icon"/>Envoyé depuis l'U</li>
-                        <li><FontAwesomeIcon icon={faUndo} className="icon"/>14 jours pour retourner l'achat</li>
+                        <li> <FontAwesomeIcon icon = {faCheckCircle} className = "icon" /> Bao bì không nhựa </li>
+                         <li> <FontAwesomeIcon icon = {faShip} className = "icon" /> Được gửi từ U </li>
+                         <li> <FontAwesomeIcon icon = {faUndo} className = "icon" /> 14 ngày để trả lại giao dịch mua </li>
                     </ul>
                     <div className="triangle"></div>
                 </ul>
@@ -96,7 +96,7 @@ export default function ProductDetail1(props) {
                     className="productdetail-addtocart-btn"
                     onClick={cartClick1}
                 >
-                   Ajouter au panier
+                   Thêm vào giỏ hàng
                 </div>
             </div> 
         </div>

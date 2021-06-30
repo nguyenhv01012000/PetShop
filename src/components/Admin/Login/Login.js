@@ -59,7 +59,7 @@ export default function Login(props) {
                     <label>Username</label>
                     <input 
                         type="text" 
-                        placeholder="Email" 
+                        placeholder="UserName" 
                         value={email}
                         onChange={(event)=>{
                             setEmail(event.target.value)

@@ -311,7 +311,7 @@ function Checkout(props) {
                                 <label 
                                     htmlFor="1" className="payment-method-label"
                                 >
-                                    <img src="http://pe.heromc.net:4000/images/fb3915cdb6d7e6dec3b6611cb82cd291" alt=""></img>
+                                    <img src="http://inoxcongsang.com/wp-content/uploads/2018/03/thanh-toan-khi-nhan-hang.jpg" alt=""></img>
                                     Thanh toán khi nhận hàng
                                 </label> 
                             </div>

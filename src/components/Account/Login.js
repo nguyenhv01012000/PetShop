@@ -140,14 +140,14 @@ function Login(props) {
                                 setName(event.target.value)
                             }}
                         ></input>
-                        <label>{t('signin')}*</label>
+                        <label>{t('email')}*</label>
                         <input
                             value={email}
                             onChange={(event)=>{
                                 setEmail(event.target.value)
                             }}
                         ></input>
-                        <label>{t('forgotPassword')} *</label>
+                        <label>{t('password')} *</label>
                         <div className="input-password">
                             <input
                                 type={isRevealPwd ? "text" : "password"}                      

@@ -12,7 +12,7 @@ const resources = {
       "signin": "Login",
       "signup": "Create Account",
       "username":"User name",
-      "password":"password",
+      "password":"Password",
       "email" : "Email",
       "forgotPassword": "Forgot password",
       "createAccount" : "Create New Account",
@@ -29,7 +29,7 @@ const resources = {
       "password":"contraseña",
       "email" : "Email",
       "forgotPassword": "Se te olvidó tu contraseña",
-      "createAccount" : "crear una nueva cuenta",
+      "createAccount" : "Crear una nueva cuenta",
       "hasAccount" : "Ya tienes una cuenta"
     }
   },

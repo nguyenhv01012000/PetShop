@@ -145,13 +145,13 @@ export default function DashboardBody(props) {
                     setToastFunc={setToastFunc}
                 />
             }
-            { (props.openEdit && tabId === "7") &&
+            {/* { (props.openEdit && tabId === "7") &&
                 <DashboardSubscriberEdit
                     setCloseEditFunc={props.setCloseEditFunc}
                     setToastFunc={setToastFunc}
                     email={email} 
                 />
-            }
+            } */}
             <DashboardHeader
                 itemName= {props.menuItems[tabId-1].name}
                 setOpenMenuOnClick = {props.setOpenMenuOnClick}
@@ -206,7 +206,7 @@ export default function DashboardBody(props) {
                     isChange={isChange}
                 />
             } 
-            {
+            {/* {
                 tabId === "7" && 
                 <DashboardSubscriber
                     setOpenCreateFunc={props.setOpenCreateFunc}
@@ -214,7 +214,7 @@ export default function DashboardBody(props) {
                     toast={toast}
                     isChange={isChange}
                 />
-            }
+            } */}
         </div>
     )
 }

@@ -43,11 +43,11 @@ function Dashboard(props) {
             name: "Users",
             icon: faUser
         }, 
-        {
-            id: "7",
-            name: "Subscribers",
-            icon: faEnvelope
-        },
+        // {
+        //     id: "7",
+        //     name: "Subscribers",
+        //     icon: faEnvelope
+        // },
     ]
     const [tabId, setTabId] = useState("1");
     const [openMenu, setOpenMenu] = useState(true); 
