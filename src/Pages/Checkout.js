@@ -315,7 +315,7 @@ function Checkout(props) {
                                     Thanh toán khi nhận hàng
                                 </label> 
                             </div>
-                            <div 
+                            {/* <div 
                                 className="checkout-detail-ship-item flex"
                             > 
                                 <input 
@@ -346,7 +346,7 @@ function Checkout(props) {
                                     <img src="https://stccbo.zalopay.vn/zalopay-public/websites/ver201022/images/logozlp1.png" alt=""></img>
                                     ZaloPay
                                 </label>
-                            </div> 
+                            </div>  */}
                             <div className={isShowQR ? "qr-box flex-col" : "d-none"}> 
                                 <div className="qr-code-box flex-center">
                                     <QRCode value={qrValue}></QRCode> 

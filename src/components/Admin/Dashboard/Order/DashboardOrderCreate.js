@@ -29,10 +29,10 @@ export default function DashboardOrderCreate(props) {
         var total = 0;
         for(let i in productList) {
             const data = {
-                id: productList[i]._id,
+                id: productList[i].id,
                 amount: productList[i].count,
             }
-            total += productList[i].productFinalPrice * productList[i].count
+            total += productList[i].productPrice * productList[i].count
             listOrder.push(data)
         }
 
@@ -59,35 +59,6 @@ export default function DashboardOrderCreate(props) {
         axios.get(`http://localhost:8000/api/users`)
             .then(res => {
                 setUserList(res.data)
-                res.data.filter((item)=>{
-                    if (item.email === user) {
-                        setOrderName(item.username)
-                        setOrderEmail(item.email)
-                        setOrderPhone(item.userPhone)
-                        setOrderProvince(item.userProvince)
-                        setOrderDistric(item.userDistric)
-                        setOrderAddress(item.userAddress)
-                        if (item.userTinh !== "") {
-                            tinh.filter((item2)=>{
-                                if (item.userTinh === item2.name) {
-                                    setProvinceId(item2.id)
-                                }
-                                return null
-                            })
-                            setOrderProvince(item.userTinh)
-                        }
-                        if (item.userHuyen !== "") {
-                            setOrderDistric(item.userHuyen)
-                        }
-                    }
-                    return null
-                })
-            }
-        )
-        axios.get(`http://localhost:4000/vietnam`)
-            .then(res => {
-                setTinh(res.data[0].tinh)
-                setHuyen(res.data[0].huyen)
             }
         )
         axios.get(`http://localhost:8000/api/product`)
@@ -103,7 +74,7 @@ export default function DashboardOrderCreate(props) {
             setOrderProvince("")
             setProvinceId("")
         }
-    },[user])
+    },[])
     
     return (
         <div className="DashboardProductInfo">
@@ -137,8 +108,8 @@ export default function DashboardOrderCreate(props) {
                                         return (
                                             <option
                                                 key={index}
-                                                value={item.email}
-                                            >{item.email}</option>
+                                                value={item.username}
+                                            >{item.username}</option>
                                         )
                                     })
                                 }
@@ -162,7 +133,7 @@ export default function DashboardOrderCreate(props) {
                         <div className="dashboard-right">
                             <input 
                                 type="text" name="email" 
-                                value={orderEmail || ""}
+                                value={orderEmail || ""}    
                                 onChange={(event)=>{
                                     setOrderEmail(event.target.value)
                                 }} required
@@ -181,7 +152,7 @@ export default function DashboardOrderCreate(props) {
                                 ></input>
                         </div>
                     </div>
-                    <div className="create-box-row flex">
+                    {/* <div className="create-box-row flex">
                         <div className="dashboard-left flex">Province</div>
                         <div className="dashboard-right">
                             <select 
@@ -228,7 +199,7 @@ export default function DashboardOrderCreate(props) {
                                 })}
                             </select>
                         </div>
-                    </div>
+                    </div> */}
             
                     <div className="create-box-row flex">
                         <div className="dashboard-left flex">Address</div>
@@ -268,7 +239,7 @@ export default function DashboardOrderCreate(props) {
                                             virtualCart.push({...JSON.parse(value), count: 1})
                                         } else {
                                             for (let i = 0; i < virtualCart.length; i++) {
-                                                if (virtualCart[i].id === JSON.parse(value).id) {
+                                                if (virtualCart[i].id == JSON.parse(value).id) {
                                                     virtualCart[i].count += 1
                                                     break
                                                 }
@@ -284,7 +255,7 @@ export default function DashboardOrderCreate(props) {
                                         <option
                                             key={index}
                                             value={JSON.stringify(item)}
-                                        >Name: {item.productName}, Price: {item.productFinalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</option>
+                                        >Name: {item.productName}, Price: {item.productPrice}</option>
                                     )
                                 })}
                             </select>
@@ -296,7 +267,7 @@ export default function DashboardOrderCreate(props) {
                                                 key={index}
                                                 className="order-list-item"
                                             >
-                                                <img src={item.productColor[0].productImg[0]} alt=""></img>
+                                                <img src={item.productImg} alt=""></img>
                                                 <p style={{width: '55%'}}>{item.productName}</p>
                                                 <div style={{display: 'flex', alignItems: 'center'}}>
                                                     <p 
@@ -306,7 +277,7 @@ export default function DashboardOrderCreate(props) {
                                                             const arr = [...productList]
                                                             const id = event.target.id;
                                                             for (let i in arr) {
-                                                                if (id === i) {
+                                                                if (id == i) {
                                                                     if (arr[i].count === 0) {
                                                                         return
                                                                     } else {
@@ -325,7 +296,7 @@ export default function DashboardOrderCreate(props) {
                                                             const arr = [...productList]
                                                             const id = event.target.id;
                                                             for (let i in arr) {
-                                                                if (id === i) {
+                                                                if (id == i) {
                                                                     arr[i].count += 1
                                                                 }
                                                             }
@@ -368,7 +339,7 @@ export default function DashboardOrderCreate(props) {
                             >
                                 <option></option>
                                 <option value="thanh toan khi nhan hang">Cash On Delivery</option> 
-                                <option value="zalopay">ZaloPay</option>
+                                {/* <option value="zalopay">ZaloPay</option> */}
                             </select>
                         </div>
                     </div>
