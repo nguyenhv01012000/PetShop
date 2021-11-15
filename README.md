@@ -1,5 +1,5 @@
 # PetShop
 Use platform Reactjs
 # Run Application
-npm install
+<p>npm install<p/>
 npm start
