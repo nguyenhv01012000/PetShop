@@ -27,8 +27,8 @@ function App(props) {
         <div className="App"> 
           <Toast/>
           <Route path="/" exact component={Home}></Route> 
-          <Route path="/dog" exact component={Product}></Route> 
-          <Route path="/cat" exact component={Product}></Route> 
+          <Route path="/report" exact component={Product}></Route> 
+          {/* <Route path="/cat" exact component={Product}></Route>  */}
           <Route path="/news" exact component={News}></Route> 
           <Route path="/news/:id" exact component={NewsDetail}></Route> 
           <Route path="/login" exact component={Login}></Route> 

@@ -17,7 +17,7 @@ export default function DashboardProductTable(props) {
     const [isSortBySold, setIsSortBySold] = useState(false)
     
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/product`)
+        axios.get(`http://localhost:8000/api/report`)
             .then(res => {
                 setProducts(res.data)
                 setConstProducts(res.data)
@@ -103,7 +103,7 @@ export default function DashboardProductTable(props) {
     }
 
     const deleteOnClick = (event) => {
-        axios.delete(`http://localhost:8000/api/product/${event.target.id}`, {
+        axios.delete(`http://localhost:8000/api/report/${event.target.id}`, {
             productId: event.target.id
         })
         setProducts(products.filter((item)=>{
@@ -284,20 +284,20 @@ export default function DashboardProductTable(props) {
                                     return (
                                         <tr key={index}>
                                             <td className="table-name table-mobile-productname">
-                                                <p>{item.productName}</p>
+                                                <p>{item.name}</p>
                                             </td>
                                             <td className="table-mobile-productimages" style={{display: 'flex'}}>
                                                 <img 
-                                                    src={item.productImg} 
+                                                    src={item.image} 
                                                     width="70px" height="80px"
                                                     style={{padding: '5px 0'}}
                                                     alt=""
                                                 />
                                             </td>
                                             <td>
-                                                <p>{item.productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ</p>
+                                                <p>{item.address}</p>
                                             </td>
-                                            { item.productSale > 0 &&
+                                            {/* { item.productSale > 0 &&
                                                 <td className="table-mobile-productsale">
                                                     <p style={{color: 'green'}}>{item.productSale}%</p>
                                                 </td>
@@ -306,11 +306,11 @@ export default function DashboardProductTable(props) {
                                                 <td className="table-mobile-productsale">
                                                     <p style={{color: 'red'}}>No sale</p>
                                                 </td>
-                                            }
+                                            } */}
                                             <td className="table-mobile-productsold">
-                                                <p>{item.productSold}</p>
+                                                <p>{item.review}</p>
                                             </td>
-                                            <td className="table-mobile-productdate">
+                                            {/* <td className="table-mobile-productdate">
                                                 <p>{shortedDate}</p>
                                             </td>
                                             <td className="star-rating">
@@ -331,7 +331,7 @@ export default function DashboardProductTable(props) {
                                                         averageRating > 4 ? "star-color star" :"star"
                                                     }>★</p>
                                                 </div>
-                                            </td>
+                                            </td> */}
                                             <td>
                                                 <div className="action-table flex">
                                                     <div 

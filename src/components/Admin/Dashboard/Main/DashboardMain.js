@@ -25,6 +25,8 @@ export default function DashboardMain() {
     const [orderMonthPercent, setOrderMonthPercent] = useState({})
     const [saleMonthPercent, setSaleMonthPercent] = useState({})
     const [incomeMonthPercent, setIncomeMonthPercent] = useState({}) 
+    const [report, setReport] = useState([]);
+
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/products`)
@@ -42,6 +44,11 @@ export default function DashboardMain() {
                 }
                 setTopProductSales(virtualProducts2)
             }
+        )
+        axios.get(`http://localhost:8000/api/report`)
+        .then(res => {
+            setReport(res.data)
+        }
         )
         axios.get(`http://localhost:8000/api/users`)
             .then(res => {
@@ -155,31 +162,31 @@ export default function DashboardMain() {
     const totalCount = [
         {
             id: 1,
-            title: "Total orders",
-            count: order.length,
-            percent: orderMonthPercent.percent,
+            title: "Total reports",
+            count: report.length,
+            percent: "50",
             isDecrease: orderMonthPercent.isDecrease,
             color: "orange",
             icon: faFileInvoice
         },
-        {
-            id: 2,
-            title: "Total sales",
-            count: `${totalSale}`,
-            percent: saleMonthPercent.percent,
-            isDecrease: saleMonthPercent.isDecrease,
-            color: "pink",
-            icon: faTshirt
-        },
-        {
-            id: 3,
-            title: "Income",
-            count: `${totalIncome}đ`,
-            percent: incomeMonthPercent.percent,
-            isDecrease: incomeMonthPercent.isDecrease,
-            color: "green",
-            icon: faMoneyBillWave
-        },
+        // {
+        //     id: 2,
+        //     title: "Total sales",
+        //     count: `${totalSale}`,
+        //     percent: saleMonthPercent.percent,
+        //     isDecrease: saleMonthPercent.isDecrease,
+        //     color: "pink",
+        //     icon: faTshirt
+        // },
+        // {
+        //     id: 3,
+        //     title: "Income",
+        //     count: `${totalIncome}đ`,
+        //     percent: incomeMonthPercent.percent,
+        //     isDecrease: incomeMonthPercent.isDecrease,
+        //     color: "green",
+        //     icon: faMoneyBillWave
+        // },
         {
             id: 4,
             title: "Users",
@@ -247,9 +254,9 @@ export default function DashboardMain() {
                     )
                 })}
             </div>
-            {/* <DashboardLocation
-                order={order}
-            />  */}
+            <DashboardLocation
+                report={report}
+            /> 
             {/* <div className="row flex">
                 <DashboardChartPie
                     email = {email}

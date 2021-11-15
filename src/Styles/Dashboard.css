@@ -127,11 +127,11 @@
     margin-bottom: 0;
 }
 .db-menu-item:hover {
-    background-color: #0e63bb;
+    background-color: #0ebb42;
     color: #fff;
 }
 .db_menu_active {
-    background-color: #0e63bb;
+    background-color: #0ebb87;
     color: #fff;
 }
 .db-menu-item .icon {
@@ -405,7 +405,7 @@ display: none !important;
     box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(255,152,0,.4);
 }
 .pink {
-    background: linear-gradient(60deg,#ec407a,#d81b60);
+    background: linear-gradient(60deg,#ec4040be,#d81b1b);
     box-shadow: 0 4px 20px 0 rgba(0,0,0,.14),0 7px 10px -5px rgba(233,30,99,.4);
 }
 .lightblue {

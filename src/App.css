@@ -84,7 +84,7 @@
   flex-direction: column;
 }
 .btn {
-  background-color: #0e63bb !important;
+  background-color: #0ebb33 !important;
   color: #fff !important;
   display: flex;
   justify-content: center;
@@ -92,7 +92,7 @@
   cursor: pointer;
 } 
 .btn-nothover {
-  background-color: #0e63bb !important;
+  background-color: #0ebb50 !important;
   color: #fff !important;
   display: flex;
   justify-content: center;

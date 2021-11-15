@@ -18,8 +18,15 @@ function Home() {
     <div className="Home">
       <Header/>
       <Banner/>
-      <Intro/>
+      <div className="top-intro flex-col">
+                <div className="intro-title">
+                    {/* <strong>Best News</strong> */}
+                </div>
+                <div className="intro-text">
+                </div>
+            </div>
       <Features/>
+      <Intro/>
       <Feedback/>
       <Newsletter/>
       <Footer/>

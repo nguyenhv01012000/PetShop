@@ -2,36 +2,33 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+import DashboardEditor from '../News/DashboardEditor';
 
 export default function DashboardProductCreate(props) {
 
     const createForm = useRef();
-    const cateInput = useRef(); 
-    const [isCheckedSmall, setIsCheckedSmall] = useState(false);
-    const [isCheckedMedium, setIsCheckedMedium] = useState(false);
-    const [isCheckedLarge, setIsCheckedLarge] = useState(false);
+    const cateInput = useRef();
     const [inputValue, setInputValue] = useState([])
-    const [cate, setCate] = useState([])
-    const [cateValue, setCateValue] = useState("") 
-    const [file, setFile] = useState([]) 
-    const [productCateList, setProductCateList] = useState([])
-
-    const [productImg, setProductImg] = useState([])
+    const [cateValue, setCateValue] = useState("")
+    const [file, setFile] = useState([])
+    const [newsContent, setNewsContent] = useState("")
+    const [newsImg, setNewsImg] = useState([])
+    const [cateList, setCateList] = useState([])
 
     const handleOnChange = (event) => {
         setInputValue({...inputValue, [event.target.name]: event.target.value})
     }
     
     useEffect(()=> {
-        axios.get(`http://localhost:8000/api/product`)
-            .then(res => {
-                const test = Object.values(res.data.reduce((a, {productCate}) => {
-                    a[productCate] = a[productCate] || {productCate};
-                    return a;
-                }, Object.create(null)));
-                setProductCateList(test)
-            }
-        ) 
+        axios.get(`http://localhost:8000/api/news`)
+                .then(res => {
+                    const test = Object.values(res.data.reduce((a, {newCate}) => {
+                        a[newCate] = a[newCate] || {newCate};
+                        return a;
+                    }, Object.create(null)));
+                    setCateList(test)
+                }
+            )
     },[])
 
     const onSubmit = (event) => {
@@ -46,37 +43,30 @@ export default function DashboardProductCreate(props) {
 
         const imageArr = Array.from(file);
         imageArr.forEach(image => {
-            formData.append('productImg', image);
+            formData.append('newImg', image);
         });
-
-        formData.append("productName", inputValue.name);
-        formData.append("productSale", inputValue.sale);
-        formData.append("productPrice", inputValue.price);
-        formData.append("productCate", cateValue);  
-        formData.append("productDes", inputValue.des); 
-        formData.append("productDate", new Date());
-        axios.post('http://localhost:8000/api/product', formData, config)
+        formData.append("newTime", new Date());
+        formData.append("newCate", cateValue);
+        formData.append("newTitle", inputValue.title);
+        formData.append("newContent", newsContent);
+        axios.post('http://localhost:8000/api/news', formData, config)
         props.setCloseCreateFunc(false);
         props.setToastFunc(true);
     }
 
     const addNewCate = () => {
-        axios.post('http://localhost:8000/api/category', {
-            cateName: inputValue.cate
-        })
-        setCate(cate=>[...cate, {cateName: inputValue.cate}])
-        setCateValue(inputValue.cate)
+        setCateList(cateList => [...cateList, {newCate: inputValue.cate}])
         cateInput.current.value = ""
-    } 
-    
+    }
+
     const deleteImg = (event) => {
         const virutalFile = [...file]
         virutalFile.splice(event.target.id, 1)
         setFile(virutalFile)
 
-        const items = [...productImg]
+        const items = [...newsImg]
         items.splice(event.target.id, 1)
-        setProductImg(items)
+        setNewsImg(items)
     }
 
     return (
@@ -84,7 +74,7 @@ export default function DashboardProductCreate(props) {
             <div className="create-box"> 
                 <div className="create-box-title flex">
                     <div className="create-box-title-text">
-                        Product infomation
+                        News infomation
                     </div>
                     <div  
                         className="create-box-title-close flex-center"
@@ -97,9 +87,9 @@ export default function DashboardProductCreate(props) {
                 </div>
                 <form onSubmit={onSubmit} encType="multipart/form-data" ref={createForm}>
                     <div className="create-box-row flex">
-                        <div className="dashboard-left flex">Name</div>
+                        <div className="dashboard-left flex">Title</div>
                         <div className="dashboard-right">
-                            <input type="text" name="name" onChange={handleOnChange} required></input>
+                            <input type="text" name="title" onChange={handleOnChange} required></input>
                         </div>
                     </div>
                     <div className="create-box-row flex">
@@ -109,7 +99,7 @@ export default function DashboardProductCreate(props) {
                                 onChange={(event) => {
                                     const files = event.target.files;
                                     for (let i = 0; i< files.length; i++) {
-                                        setProductImg(product=>[...product, URL.createObjectURL(files[i])])
+                                        setNewsImg(news=>[...news, URL.createObjectURL(files[i])])
                                     }
                                     const fileArr = Array.prototype.slice.call(files)
                                     fileArr.forEach(item=>{
@@ -118,14 +108,14 @@ export default function DashboardProductCreate(props) {
                                     })
                                 }}
                                 type="file"
-                                name="productImg"
+                                name="newsImg"
                                 className="noborder"
                                 multiple="multiple"
                                 style={{height: '50px'}}
                             ></input>
                             <div className="flex" style={{ overflowY: 'hidden', flexWrap:'wrap'}}>
-                                { productImg && 
-                                    productImg.map((item, index) => {
+                                { newsImg && 
+                                    newsImg.map((item, index) => {
                                         return (
                                             <div key={index} className="create-box-img">
                                                 <img key={index} src={item} alt=""></img>
@@ -146,32 +136,16 @@ export default function DashboardProductCreate(props) {
                         </div>
                     </div>
                     <div className="create-box-row flex">
-                        <div className="dashboard-left flex">Defaut price </div>
-                        <div className="dashboard-right">
-                            <input type="number" name="price" placeholder="USD" onChange={handleOnChange} required></input>
-                        </div>
-                    </div>
-                    <div className="create-box-row flex">
-                        <div className="dashboard-left flex">Sale off </div>
-                        <div className="dashboard-right flex-center">
-                            <input type="number" placeholder="%" onChange={handleOnChange} name="sale" required></input>
-                            {/* <label>From: </label>
-                            <input type="date"  name="fromdate" onChange={handleOnChange} placeholder="dd/mm/yyyy" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)"/>
-                            <label>To: </label>
-                            <input type="date"  name="todate" onChange={handleOnChange} placeholder="dd/mm/yyyy" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)"/> */}
-                        </div>
-                    </div> 
-                    <div className="create-box-row flex">
                         <div className="dashboard-left flex">Category </div>
                         <div className="dashboard-right flex-center">
                             <select style={{ width: "350px"}} 
                                 onChange={(event) => {setCateValue(event.target.value)}}
                                 value={cateValue}>
                                 <option></option>
-                                { cate.length > 0 &&
-                                    cate.map((item, index) => {
+                                { cateList.length > 0 &&
+                                    cateList.map((item, index) => {
                                         return(
-                                            <option key={index}>{item.cateName}</option>
+                                            <option key={index}>{item.newCate}</option>
                                         )
                                     })
                                 }
@@ -190,17 +164,15 @@ export default function DashboardProductCreate(props) {
                                 Add
                             </div>
                         </div>
-                    </div>  
-                    <div className="create-box-row flex">
-                        <div className="dashboard-left flex">Description </div>
-                        <div className="dashboard-right">
-                            <input type="text" name="des" onChange={handleOnChange} required></input>
-                        </div>
                     </div>
-
+                    <div style={{border: '1px #ddd solid'}}>
+                        <DashboardEditor
+                            setNewsContent= {setNewsContent}
+                        />
+                    </div>
                     <div className="flex-center" style={{marginTop: '40px'}}>
                     <button className="create-box-btn btn">
-                        Add product
+                        Add news
                     </button>
                 </div>
                 </form>

@@ -3,7 +3,7 @@ import '../../../App.css'
 import '../../../Styles/Dashboard.css'
 import DashboardBody from './DashboardBody'
 import DashboardMenu from './DashboardMenu'
-import { faEnvelope, faFileInvoice, faHome, faInbox, faNewspaper, faTshirt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faFileInvoice, faHome, faInbox, faNewspaper, faPhoneVolume, faTshirt, faUser } from '@fortawesome/free-solid-svg-icons'
 
 import socketIOClient from "socket.io-client" 
 import Axios from 'axios'
@@ -23,19 +23,19 @@ function Dashboard(props) {
             name: "Live Chat",
             icon: faInbox
         }, 
-        {
-            id: "3",
-            name: "Orders",
-            icon: faFileInvoice
-        },
+        // {
+        //     id: "3",
+        //     name: "Orders",
+        //     icon: faFileInvoice
+        // },
         {
             id: "4",
-            name: "Products",
-            icon: faTshirt
+            name: "Reports",
+            icon: faPhoneVolume
         },
         {
             id: "5",
-            name: "Blog",
+            name: "News",
             icon: faNewspaper
         },
         {

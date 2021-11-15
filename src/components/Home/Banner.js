@@ -30,13 +30,13 @@ function Banner(props) {
             </div>
             <div className="right-banner">
                 <div className="banner-title">
-                    <strong>Shop</strong> dành cho mèo và chó
+                    <strong>Platform</strong> for reporting wildlife crime.
                 </div>
                 <div className="banner-text">
-                    Shop dành cho chó mèo cung cấp những vật dụng cần thiết như thực phẩm, thực phẩm chức nắng, đồ chơi, ngoài ra còn có spa khám và chữa bệnh cho chó mèo 
+                    Up to a million species are facing extinction - some within the next decade - unless we take immediate action to save them. You can be a part of the solution for endangered species: join and become part of our community.
                 </div>
                 <div className="banner-btn-list flex">
-                    <div 
+                    {/* <div 
                         className="banner-btn"
                         onClick={()=>{
                             props.history.push("/dog")
@@ -48,7 +48,7 @@ function Banner(props) {
                             props.history.push("/cat")
                         }}
                         className="banner-btn"
-                    >Sản phẩm cho mèo</div>
+                    >Sản phẩm cho mèo</div> */}
                 </div>
             </div>
         </div>

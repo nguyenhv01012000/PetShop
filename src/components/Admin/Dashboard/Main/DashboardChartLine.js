@@ -115,11 +115,11 @@ export default function DashboardChartLine(props) {
             </div>
             <div className="top-location-container" style={{height: 'max-content'}}>
                 <div className="headerbox-header">
-                    <p>2020 Revenue</p>
+                    <p>Map</p>
                 </div>
                 <div className="top-location-content flex">
                     <div className="top-location-map" style={{margin: '0'}}>
-                        <Line data={data} options={options}/>
+                    <img src="https://scontent.fhan14-2.fna.fbcdn.net/v/t1.15752-9/256867063_2372994652837506_2274986126878858971_n.png?_nc_cat=109&ccb=1-5&_nc_sid=ae9488&_nc_ohc=SqG6Dktu6skAX9QN5iG&_nc_ht=scontent.fhan14-2.fna&oh=36ef0534e57f1c3b52acd90055c4b54f&oe=61B78125" alt="Girl in a jacket" width="1100"/>
                     </div>
                 </div>
                 <div className="count-line"></div>

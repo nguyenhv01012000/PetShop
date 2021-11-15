@@ -22,41 +22,41 @@ export default function Feedback(props) {
             <Slider {...settings}>
                 <div className="feedback-box flex">
                     <div className="feedback-image">
-                        <img src="https://tractive.com/static/images/customer-story/customer-story-image-jimmy-2560.jpg" alt=""></img>
+                        <img src="https://maroon-leaf-0c6.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4fa9d772-2694-4602-8e67-1698f6c7b692%2FUntitled.png?table=block&id=61278aee-bf0e-4a3c-9e42-8e278fdeb53e&spaceId=760030fd-32a3-4f6c-b23d-41fa1e1e1293&width=2000&userId=&cache=v2" alt=""></img>
                     </div>
                     <div className="feedback-text flex-col">
-                        <span><strong>“Con chó Beagle 15 tuổi của tôi </strong> đã được cứu sống.”</span>
+                        <span><strong>Save the monkey in Son Tra</strong></span>
                         <br></br>
-                        “Nó bị mắc kẹt ở một cái hố nhỏ và lạnh. Nhờ vào âm thanh của thiết bị đã giúp tôi phát hiện ra nó. Cảm ơn thiết bị đã giúp tôi tìm ra nó!”
+                        Recenly found an illegal animal trafficking concerning the monkey in the Son Tra 
                         <br></br>
                         <br></br>
-                        <strong>Henryk</strong>
+                        <strong>15/11/2012</strong>
                     </div>
                 </div> 
                 <div className="feedback-box flex">
                     <div className="feedback-image">
-                        <img src="https://tractive.com/static/images/customer-story/customer-story-image-marley-2560.jpg" alt=""></img>
+                        <img src="https://maroon-leaf-0c6.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F53738e42-00ba-44d1-ac4e-ae649325c6a9%2FUntitled.png?table=block&id=b1919822-a8f4-4a97-9568-7760ffa14103&spaceId=760030fd-32a3-4f6c-b23d-41fa1e1e1293&width=2000&userId=&cache=v2" alt=""></img>
                     </div>
                     <div className="feedback-text flex-col">
-                        <span><strong>“Khi chú chó của bạn bị động kinh</strong>, bạn sẽ cảm thấy bất lực.”</span>
+                        <span><strong>Save tiger in Nghe Anh</strong></span>
                         <br></br>
-                        “Tôi tìm kiếm mọi thứ có thể và Tractive came đã xuất hiện. Một chú chó có lịch trình điều trị nghiêm ngặt, việc có thể tìm thấy anh ta nhanh chóng đã làm cho thiết bị theo dõi này trở thành hữu ích”
+                        How to save the tiger in Nghe An during the transportation
                         <br></br>
                         <br></br>
-                        <strong>Katja</strong>
+                        <strong>18/06/2021</strong>
                     </div>
                 </div> 
                 <div className="feedback-box flex">
                     <div className="feedback-image">
-                        <img src="https://tractive.com/static/images/customer-story/customer-story-image-rottweiler-2560.jpg" alt=""></img>
-                    </div>
+                        <img src="https://maroon-leaf-0c6.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F02e5ee4f-d605-4728-8ae5-1f0524451dc7%2FUntitled.png?table=block&id=2e0960c4-421d-46d9-9f63-21fa7efb57b5&spaceId=760030fd-32a3-4f6c-b23d-41fa1e1e1293&width=2000&userId=&cache=v2" alt=""></img>
+                    </div>  
                     <div className="feedback-text flex-col"> 
-                        <span><strong>“Thiết bị này</strong> đã cứu chú chó của tôi.”</span>
+                        <span><strong>Wild animal for eating? Why?</strong></span>
                         <br></br>
-                        “Chú chó đang chơi bên ngoài, nhưng tôi nhận ra nó không di chuyển trong 15 phút. Tôi lần theo vị trí của thiết bị, nó dẫn đến một cái hồ, con chó của tôi rơi xuống và không thể trèo lên. Cảm ơn bạn đã giúp tôi tìm và giải cứu nó!”
+                        Recenly found in a village throwing a party with wild animal
                         <br></br>
                         <br></br>
-                        <strong>Angela</strong>
+                        <strong>15/11/2020</strong>
                     </div>
                 </div> 
             </Slider>

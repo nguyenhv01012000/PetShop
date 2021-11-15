@@ -4,8 +4,8 @@ import '../../App.css'
 import Feature from './Feature'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarker, faTint } from '@fortawesome/free-solid-svg-icons'
-import Spa from '../../assets/spa1.png'
-import Spa1 from '../../assets/xyz.jpg'
+import Spa from '../../assets/Anytime-Anywhere-Any-device.jpg'
+import Spa1 from '../../assets/pic2.png'
 import Slider from 'react-slick'
 
 export default function Features(props) {
@@ -14,14 +14,14 @@ export default function Features(props) {
             <Feature
                 reverse={true}
                 img={Spa}
-                color={"linear-gradient(to right, #00a5e1, rgba(0,127,200,0.5)),linear-gradient(#007fc8, #007fc8)"}
+                color={"#00c85a"}
             >
                 <div className="feature-intro flex">
                     <div className="feature-title" style={{color: '#FFF'}}>
-                        Dịch vụ Spa chuyên nghiệp 
+                        Report anywhere anytime
                     </div>
                     <div className="feature-text" style={{color: '#FFF'}}> 
-                        <p style={{fontSize: '15px', marginTop: '10px'}}>Tractive rất thấu hiểu tình cảm của những người yêu thú cưng và hiểu được việc vệ sinh, chăm sóc và làm đẹp cho thú cưng là điều thực sự cần thiết để các em phát triển khỏe mạnh cả thể chất và tâm lý. Chính vì thế, chúng tôi đã cho ra đời chuỗi hệ thống Spa & Grooming chuyên nghiệp cho chó mèo và tất cả các loại thú cưng khác tại.</p>
+                        <p style={{fontSize: '15px', marginTop: '10px'}}>Find a illegal animal trafficking you want to report immediately at all time </p>
                         <br/><br/>
                         {/* <strong style={{fontSize: '18px'}}>Bạn không thể chờ đợi để xem?</strong>
                         <br/>
@@ -36,13 +36,10 @@ export default function Features(props) {
             >
                 <div className="feature-intro flex">
                     <div className="feature-title">
-                        <strong>Dog Care Service</strong>
+                        <strong>Maps of recent animal trafficking </strong>
                     </div>
                     <div className="feature-text">
-                    Emotional support dogs are often identified by wearing an emotional support dog vest or tag, 
-                    letting the public know that it is an emotional support dog; otherwise, their handlers will 
-                    find themselves having to explain that their dog is an emotional support dog. Some businesses, 
-                    such as airlines, prefer to see an identification card or vest that indicates that the dog is an emotional support dog.
+                    Find a illegal animal trafficking you want to report immediately at all time 
                     </div>
                     {/* <div className="feature-icon-list flex">
                             <div className="feature-icon-item">

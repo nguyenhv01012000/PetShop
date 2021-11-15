@@ -36,7 +36,7 @@
     margin: 2px 2px;
 }
 .outline {
-    outline: 1px #007FC8 solid;
+    outline: 1px #00c832 solid;
 }
 .productdetail-image-small-btn img {
     width: 20px; 
@@ -48,7 +48,7 @@
 .productdetail-info {
     padding: 50px;
     padding-top: 30px;
-    color: #007FC8;
+    color: #00c85a;
     width: 60%;
 }
 .productdetail-info ul {
@@ -64,7 +64,7 @@
 }
 .productdetail-info ul li::before {
     content: "\2022";
-    color: #007FC8;
+    color: #00c83c;
     font-weight: bold;
     display: inline-block;  
     width: 1em;
@@ -82,8 +82,8 @@
     align-items: center;
 }
 .productdetail-flag-info-list {
-    background-color: #007FC8;
-    border: 1px solid #007FC8;
+    background-color: #00c85a;
+    border: 1px solid #00c85a;
     width: 190px;
     list-style: none;
     text-align: left;
@@ -102,13 +102,13 @@
     height: 0;
     border-style: solid;
     border-width: 50px 95px 0 95px;
-    border-color: #007FC8 transparent transparent transparent;
+    border-color: #00c864 transparent transparent transparent;
     line-height: 0;
 }
 .productdetail-price {
     font-size: 24px;
     font-weight: bold;
-    color: #007FC8;
+    color: #00c85a;
     margin: 50px 0;
 }
 .productdetail-addtocart-btn {
@@ -140,7 +140,7 @@
     margin: 2px;
 }
 .productdetail-color img:hover {
-    outline: 1px #007FC8 solid;
+    outline: 1px #00c86b solid;
 } 
 .ask-list {
     margin: 0 40px;
@@ -197,7 +197,7 @@
     margin: 6px 0;
 } 
 .productreview-loadmore-btn { 
-    color: #007FC8;
+    color: #00c84d;
     cursor: pointer;
     text-transform: capitalize;
     margin-top: 20px;
@@ -244,7 +244,7 @@
     height: 40px;
     border: none;
     color: #FFF;
-    background-color: #fc2754;
+    background-color: #fc2727;
 }
 .productrecomend-list {
     justify-content: center; 

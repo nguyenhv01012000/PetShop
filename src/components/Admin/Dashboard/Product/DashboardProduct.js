@@ -1,4 +1,4 @@
-import { faTshirt } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneVolume, faTshirt } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import DashboardProductTable from './DashboardProductTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,14 +9,16 @@ export default function DashboardProduct(props) {
     const table = [
         "Name",
         "Images",
-        "Price",
-        "Sale",
-        "Sold",
+        "Address",
+        "Description"
+        // "Review",
+        // "Sale",
+        // "Sold",
         // "Category",    
         // "Size",
-        "Date",    
-        "Rating",
-        "Action"
+        // "Date",    
+        // "Rating",
+        // "Action"
     ]
 
     return (
@@ -26,8 +28,8 @@ export default function DashboardProduct(props) {
                 Update products successfully
             </div>
             <DashboardProductTable
-                icon = {faTshirt}
-                title = "Products"
+                icon = {faPhoneVolume}
+                title = "Reports"
                 color = "pink"
                 table = {table}
                 setOpenCreateFunc = {props.setOpenCreateFunc}

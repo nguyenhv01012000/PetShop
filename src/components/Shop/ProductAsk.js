@@ -7,27 +7,27 @@ export default function ProductAsk() {
         <div className="ProductAsk">
             <div className="invitejoin">
                 <div className="invitejoin-title">
-                    <strong>Những câu hỏi</strong> thường gặp (FAQs)
+                    <strong>FAQS</strong>
                 </div>
                 <div className="ask-content flex">
                     <div className="ask-list">
                         <div className="ask-item">
-                            <div className="ask-title">Phạm vi định vị của Tractive GPS?</div>
-                            <div className="ask-text">Không giới hạn. Trên thực tế, bạn có thể định vị thú cưng của bạn nếu bạn ở trên trái đất và nó hoạt động ở 130 đất nước.</div>
+                            <div className="ask-title">What type of rewards will we be given ?</div>
+                            <div className="ask-text">We have special handmade items to apprieciate your help and your concerns.</div>
                         </div>
                         <div className="ask-item">
-                            <div className="ask-title">Làm cách nào để Tractive GPS hoạt động?</div>
-                            <div className="ask-text">Nó kết nối tới thiết bị mạng có sẵn như một chiếc điện thoại để cung cấp vị trí nơi vật nuôi đã đi qua.</div>
+                            <div className="ask-title">How do we know they’re endangered animals?</div>
+                            <div className="ask-text">You can use the botchat to get more information about the animal. </div>
                         </div>
                     </div>
                     <div className="ask-list">
                         <div className="ask-item">
-                            <div className="ask-title">Tractive GPS có dùng cho mèo được không?</div>
-                            <div className="ask-text">Có. Thiết bị được thiết kế để phù hợp với mọi loại chó và mèo.</div>
+                            <div className="ask-title">How can i get the reward </div>
+                            <div className="ask-text">We have a networks of wildlife organization around the world so you can go to all their locations to get reward </div>
                         </div>
                         <div className="ask-item">
-                            <div className="ask-title">Hệ thống giám sát là gì và nó hoạt động ra sao?</div>
-                            <div className="ask-text">Nó sẽ yêu cầu bạn cung cấp thông tin về mức độ hoạt độg của thú cưng của bạn. Với thông tin đó nó có thể xác định được cấp độ hoạt động của thú cưng.</div>
+                            <div className="ask-title">How  the credit systems works?</div>
+                            <div className="ask-text">If you are log in as an user, for every correct report, your will receive one star and you can echange your stars with a rewards.</div>
                         </div>
                     </div>
                 </div> 

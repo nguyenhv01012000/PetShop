@@ -16,7 +16,7 @@
     outline: none;
 }
 .banner1 {
-    background-image: url(../assets/banner1.jpg);
+    background-image: url(../assets/123.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -24,7 +24,7 @@
     height: 600px;
 }
 .banner2 {
-    background-image: url(../assets/banner2.jpg);
+    background-image: url(../assets/456.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -54,7 +54,7 @@
     font-size: 52px;
     line-height: 36px;
     font-weight: 300;
-    color: #007FC8;
+    color: #00c85a;
     margin-top: 0;
     margin-bottom: 20px;
     line-height: 50px;
@@ -74,7 +74,7 @@
     color: #fff;
     font-size: 20px;
     padding: 10px 20px;
-    background-color: #007FC8;
+    background-color: #00c84d;
     border-radius: 10px;
 }
 /*------- Feature -------*/
@@ -102,7 +102,7 @@
     text-align: left;
     font-size: 32px;
     font-weight: 300;
-    color: #007FC8;
+    color: #00c80a;
     margin-bottom: 50px;
 }
 .feature-text {
@@ -171,11 +171,11 @@
 }
 .navbar-item:hover::after { 
     height: 5px;
-    background-color: #007FC8; 
+    background-color: #00c84d; 
 }
 .navbar-item-box {
     position: absolute;
-    background-color: #007FC8;
+    background-color: #00c864;
     left: 0;
     top: 68px;
     width: 100%;
@@ -193,13 +193,13 @@
     align-items: center;
     position: absolute; 
     top: 63px;
-    left: -200px;
+    left: -210px;
     padding-left: 200px;
     height: 50px;   
     visibility: hidden;
     z-index: 2;
     width: max-content;
-    background-color: #007FC8;
+    background-color: #00c85a;
 }
 .showSub {
     visibility: visible;
@@ -214,7 +214,7 @@
     text-transform: none; 
 }
 .navbar-item-sub-title:hover {
-    background-color: #005f95;
+    background-color: #009543;
 }
 .navbar-item-sub-title:hover .navbar-item-sub-box {
     visibility: visible;
@@ -225,10 +225,10 @@
     left: 0px;
     visibility: hidden;  
     height: 350px;
-    background: linear-gradient(to right, #00a5e1, rgba(0,127,200,0.5)),linear-gradient(#007fc8, #007fc8);
+    background: linear-gradient(to right, #00e165, rgba(0, 200, 60, 0.5)),linear-gradient(#00c87b, #00c87b);
 }
 .navbar-item-sub-box-text {
-    padding: 50px 200px;
+    padding: 20px 200px;
     padding-right: 0;
     margin-right: 30px;
     width: 60%;
@@ -246,12 +246,12 @@
 .navbar-item-sub-box-text p { 
     text-align: left;
     line-height: normal;
-    margin: 20px 0;
+    margin: 5px 0;
 }
 .navbar-item-sub-box-btn {
     padding: 0px 50px;
     margin-right: 20px;
-    background-color: #fc2754;
+    background-color: #fc2727;
     border-radius: 10px;
 }
 .navbar-item-sub-box-btn-none { 
@@ -281,19 +281,19 @@
     font-size: 18px;
 }
 .account {
-    color: #0e63bb;
+    color: #0ebb33;
     padding: 7px 10px;
     border-radius: 5px;
-    border: 1px #0e63bb solid;
+    border: 1px #0ebb50 solid;
     margin-right: 20px;
     cursor: pointer;
 }
 .account:hover {
-    background-color: #0e63bb;
+    background-color: #0ebb73;
     color: #FFF; 
 }
 .cart-box {
-    background-color: #fc2754;
+    background-color: #fc2727;
     color: #FFF;
     border-radius: 5px;
     padding: 10px 10px;
@@ -309,7 +309,7 @@
     height: 20px;
     background-color: #fff;
     border-radius: 50%;
-    color: #0e63bb;
+    color: #0ebb5c;
     font-weight: bold;
     font-size: 14px;
 }
@@ -470,7 +470,7 @@
     width: 450px;
     font-size: 32px;
     font-weight: 300;
-    color: #007FC8;
+    color: #00c85a;
     margin-bottom: 50px;
 }
 .intro-text {
@@ -482,7 +482,7 @@
 }
 .intro-step-icon .icon {
     font-size: 60px;
-    color: #007FC8;
+    color: #00c86b;
 }
 .intro-step-title {
     margin: 40px 0;
@@ -506,7 +506,7 @@
 .intro-next {
     padding-top: 25px;
     margin: 0 30px;
-    color: #007FC8;
+    color: #00c84d;
 }
 /*------- Newsletter -------*/
 .Newsletter {
@@ -544,7 +544,7 @@
     font-size: 16px;
 }
 .newsletter-form button {
-    background-color: #007FC8;
+    background-color: #00c864;
     outline: none;
     border: none;
     padding: 0 20px;
@@ -603,11 +603,11 @@
 }
 .invitejoin-title {
     text-align: center;
-    color: #007FC8; 
+    color: #00c896; 
     font-size: 38px;
     line-height: 42px;
     font-weight: 300;
-    color: #007FC8;
+    color: #00c85a;
     margin-bottom: 40px;
 }
 .invitejoin-text {

@@ -119,22 +119,24 @@ function ProductForDog(props) {
     return (
         <div className="ProductForDog">
             <Header/>
-            {products.map((item) => {
+            <ProductReview
+                    product={product}/>
+            {/* {products.map((item) => {
                 return(
                 <ProductDetail
                 animal={props.location.pathname}
                 productDetail={item}
                 /> 
                 )           
-            })}
+            })} */}
             <ShopFeatures/>
             <ProductAsk/>
-            { product &&
+            {/* { product &&
                 <ProductReview
                     product={product}/>
-            }
+            } */}
             {/* <ProductRecommend/> */}
-            <ProductNews news={news}/>
+            {/* <ProductNews news={news}/> */}
             <Newsletter/>
             <Footer/>
         </div>

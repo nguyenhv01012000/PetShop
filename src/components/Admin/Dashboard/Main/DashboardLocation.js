@@ -7,8 +7,9 @@ import axios from 'axios'
 
 export default function DashboardLocation(props) {
 
-    const [mapLink, setMapLink] = useState("https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7861084.131203502!2d106.27071340282434!3d15.903283301254934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1602514190700!5m2!1sen!2s");
-    const order = props.order
+    const [mapLink, setMapLink] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7864461.264475001!2d101.40211313069803!3d15.747489902550805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31157a4d736a1e5f%3A0xb03bb0c9e2fe62be!2zVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1636869986985!5m2!1svi!2s");
+    const report = props.report
+    console.log(report)
 
     const [location, setLocation] = useState("Hà Nội")
 
@@ -20,7 +21,7 @@ export default function DashboardLocation(props) {
     //     )
     // },[])
 
-    const tinh = Object.values(order.reduce((a, {orderTinh}) => {
+    const tinh = Object.values(report.reduce((a, {orderTinh}) => {
         a[orderTinh] = a[orderTinh] || {orderTinh, count: 0};
         a[orderTinh].count++;
         return a;
@@ -34,11 +35,9 @@ export default function DashboardLocation(props) {
     const topLocationList = tinh.splice(0,5)
 
     const setMap = (item) => {
-        for(let i in location) {
-            if (location[i].name === item) {
-                setMapLink(location[i].location)
-            }
-        }
+        if(item === "Ha Noi") setMapLink("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.1877223129145!2d105.84748191493252!3d21.025173486000327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9480a38aa1%3A0x62944277590486be!2zSGFpIELDoCBUcsawbmcsIEhvw6BuIEtp4bq_bSwgSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1636869251406!5m2!1svi!2s");
+        else if(item === "Tay Nguyen" ) setMapLink("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.399618710538!2d107.78284730036087!3d12.084771741400015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3173cede6610abc1%3A0x460d5780043f28a8!2zVMOieSBOZ3V5w6puLCDEkMSDayBIYSwgR2lhIE5naGlhLCDEkMSDayBOw7RuZywgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1636869890386!5m2!1svi!2s");
+        else setMapLink("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d942014.2310753529!2d105.49068431057574!3d22.737788467243355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x36ca5cb6615867e7%3A0x653772f437765458!2zQ2FvIELhurFuZywgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1636869963191!5m2!1svi!2s")
     }
 
     return (
@@ -48,25 +47,25 @@ export default function DashboardLocation(props) {
             </div>
             <div className="top-location-container">
                 <div className="headerbox-header">
-                    <p>Global Orders by Top Locations</p>
+                    <p>Global Report by Top Locations</p>
                 </div>
                 <div className="top-location-content flex">
                     <div className="top-location-list">
                         <div className="top-location-div flex header">
-                            <div style={{width: '60%'}}>Province</div>
-                            <div style={{width: '20%', textAlign: 'right'}}>Amount</div>
-                            <div style={{width: '20%', textAlign: 'right'}}>Percent</div>
+                            <div style={{width: '60%'}}>Address</div>
+                            <div style={{width: '20%', textAlign: 'right'}}>Name</div>
+                            <div style={{width: '20%', textAlign: 'right'}}>Report</div>
                         </div>
-                        {topLocationList.map((item, index)=>{
+                        {report.map((item, index)=>{
                             return (
                                 <div 
                                     key={index}
                                     className="top-location-div flex"
-                                    onClick={()=>setMap(item.orderTinh)}
+                                    onClick={()=>setMap(item.address)}
                                 >
-                                    <div style={{width: '60%'}}>{item.orderTinh}</div>
-                                    <div style={{width: '20%', textAlign: 'right'}}>{item.count}</div>
-                                    <div style={{width: '20%', textAlign: 'right'}}>{parseFloat((item.count/total) * 100).toFixed(2)} %</div>
+                                    <div style={{width: '60%'}}>{item.address}</div>
+                                    <div style={{width: '20%', textAlign: 'right'}}>{item.name}</div>
+                                    <div style={{width: '20%', textAlign: 'right'}}>{item.review}</div>
                                 </div>
                             )
                         })}
